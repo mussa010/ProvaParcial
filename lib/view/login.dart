@@ -124,7 +124,7 @@ class _Login extends State<Login> {
                       });
                     }
                   },
-                  child: const Text('Logar'),
+                  child: const Text('Login'),
                 ),
                 SizedBox(height: 0.03 * (MediaQuery.of(context).size.height)),
                 OutlinedButton(
@@ -134,7 +134,7 @@ class _Login extends State<Login> {
                     foregroundColor: Colors.white,
                   ),
                   onPressed: () {},
-                  child: const Text('Criar usuário'),
+                  child: const Text('Criar conta'),
                 ),
               ])),
         )));
