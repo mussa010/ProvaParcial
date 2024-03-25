@@ -1,3 +1,3 @@
 # prova_parcial
 
-A new Flutter project.
+Aplicativo prova parcial
