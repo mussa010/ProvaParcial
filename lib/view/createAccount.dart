@@ -33,10 +33,9 @@ class _CreateAccount extends State<CreateAccount> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          leading: const Icon(
-            Icons.account_circle_outlined,
-            color: Colors.white,
-            size: 40,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.pop(context),
           ),
           backgroundColor: Colors.blue,
         ),
@@ -54,16 +53,61 @@ class _CreateAccount extends State<CreateAccount> {
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(50),
                     ),
-                    icon: const Icon(Icons.person, color: Colors.blue,)
-
-                  )
-                )
-
+                    icon: const Icon(Icons.person, color: Colors.blue)
+                  ), 
+                  validator: (value) {
+                    if(value == null) {
+                      return 'Campo vazio';
+                    } else if(value.isEmpty) {
+                      return 'Campo vazio';
+                    }
+                    return null;
+                  }
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  controller: txtMail,
+                  decoration: InputDecoration( 
+                    labelText: 'Informe seu cpf',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50)
+                    ),
+                    icon: const Icon(Icons.assignment_ind,color: Colors.blue),
+                  ),
+                  validator: (value) {
+                    if(value == null) {
+                      return 'Campo vazio';
+                    } else if(value.isEmpty) {
+                      return 'Campo vazio';
+                    }
+                    return null;
+                  }
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  controller: txtMail,
+                  decoration: InputDecoration( 
+                    labelText: 'Informe seu e-mail',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50)
+                    ),
+                    icon: const Icon(Icons.email,color: Colors.blue),
+                  ),
+                  validator: (value) {
+                    if(value == null) {
+                      return 'Campo vazio';
+                    } else if(value.isEmpty) {
+                      return 'Campo vazio';
+                    }
+                    return null;
+                  }
+                ),
               ],)),
             )
           ], 
-          crossAxisAlignment: CrossAxisAlignment.center,)
-        
+          crossAxisAlignment: CrossAxisAlignment.center)
         )
 
     );

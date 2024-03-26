@@ -8,6 +8,7 @@ class User {
 
   fromJson(Map<String, dynamic> json) {
     name = json['name'];
+    cpf = json['cpf'];
     mail = json['mail'];
     password = json['password'];
   }
@@ -15,6 +16,7 @@ class User {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
+    data['cpf'] = cpf;
     data['mail'] = mail;
     data['password'] = password;
     return data;
@@ -42,5 +44,13 @@ class User {
 
   set setPassword(String password) {
     this.password = password;
+  }
+
+  get getCpf {
+    return cpf;
+  }
+
+  set setCpf(String cpf) {
+    this.cpf = cpf;
   }
 }

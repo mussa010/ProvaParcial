@@ -59,11 +59,11 @@ class _Login extends State<Login> {
             child: Column(
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height / 4,
+                  height: MediaQuery.of(context).size.height / 8,
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
                   color: Colors.blue, 
-                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40)),
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50))
                   ),
                   child: Container(
                     color: Colors.blue,
@@ -73,7 +73,7 @@ class _Login extends State<Login> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(50, 100, 50, 50),
+                  padding: const EdgeInsets.fromLTRB(50, 50, 50, 50),
                   child: Form(
                   key: formKey,
                   child: Column(children: [
