@@ -1,10 +1,14 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import '../view/login.dart';
 import '../model/user.dart';
 
+import 'view/login.dart';
+import 'view/createAccount.dart';
+
 void main() {
-  runApp(DevicePreview(builder: (context) => const MainApp()));
+  runApp(DevicePreview(
+    enabled: true,
+    builder: (context) => const MainApp()));
   // runApp(const MainApp());
   String name = 'Matheus Teixeira Mussalam';
   String cpf = '1234567890';
@@ -21,9 +25,19 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Login(),
+    return MaterialApp(
+      title: 'Lista de compras',
       debugShowCheckedModeBanner: false,
+
+      //Rotas de navegação
+      initialRoute: 't1',
+      routes: {
+        't1': (context) =>  const Login(),
+        't2':(context) =>  const CreateAccount(),
+      }
+
     );
   }
 }
+
+

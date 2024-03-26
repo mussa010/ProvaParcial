@@ -1,13 +1,26 @@
+// ignore_for_file: sort_child_properties_last
+
 import 'package:flutter/material.dart';
 
-class CreateAccout extends StatefulWidget {
-  const CreateAccout({super.key});
+class CreateAccount extends StatefulWidget {
+  const CreateAccount({super.key});
 
   @override
-  State<CreateAccout> createState() => _CreateAccout();
+  State<CreateAccount> createState() => _CreateAccount();
 }
 
-class _CreateAccout extends State<CreateAccout> {
+class _CreateAccount extends State<CreateAccount> {
+  //chave formulário
+  var formKey = GlobalKey<FormState>();
+  var status = false;
+
+  //controladores para campo de texto
+  var txtName = TextEditingController();
+  var txtcpf = TextEditingController();
+  var txtMail = TextEditingController();
+  var txtPassword = TextEditingController();
+  var txtConfirmPassword = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +40,32 @@ class _CreateAccout extends State<CreateAccout> {
           ),
           backgroundColor: Colors.blue,
         ),
+        body: SingleChildScrollView(
+          child:  Column(children: [
+            Padding(padding: const EdgeInsets.fromLTRB(50, 100, 50, 50),
+            child:  Form(
+              key: formKey, 
+              child: Column(children: [
+                TextFormField(
+                  keyboardType: TextInputType.text,
+                  controller: txtName,
+                  decoration: InputDecoration( 
+                    labelText: 'Informe seu nome',
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    icon: const Icon(Icons.person, color: Colors.blue,)
+
+                  )
+                )
+
+              ],)),
+            )
+          ], 
+          crossAxisAlignment: CrossAxisAlignment.center,)
+        
+        )
+
     );
   }
 }

@@ -73,8 +73,8 @@ class _Login extends State<Login> {
                   ),
                 ),
                 Padding(
-                          padding: const EdgeInsets.fromLTRB(50, 100, 50, 50),
-                          child: Form(
+                  padding: const EdgeInsets.fromLTRB(50, 100, 50, 50),
+                  child: Form(
                   key: formKey,
                   child: Column(children: [
                     TextFormField(
@@ -148,7 +148,7 @@ class _Login extends State<Login> {
                         foregroundColor: Colors.white,
                       ),
                       onPressed: () {
-                        // Navigator.push(context, )
+                         Navigator.pushNamed(context, 't2');
                 
                       },
                       child: const Text('Criar conta'),
