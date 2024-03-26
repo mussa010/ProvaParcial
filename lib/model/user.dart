@@ -1,8 +1,8 @@
 class User {
-  String name;
-  String cpf;
-  String mail;
-  String password;
+  String name = '';
+  String cpf = '';
+  String mail = '';
+  String password = '';
 
   User({required this.name, required this.cpf, required this.mail, required this.password});
 
@@ -13,15 +13,15 @@ class User {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['mail'] = this.mail;
-    data['password'] = this.password;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['name'] = name;
+    data['mail'] = mail;
+    data['password'] = password;
     return data;
   }
 
   String get getName {
-    return this.name;
+    return name;
   }
 
   set setName(String name) {
@@ -29,7 +29,7 @@ class User {
   }
 
   String get getMail {
-    return this.mail;
+    return mail;
   }
 
   set setMail(String mail) {
@@ -37,7 +37,7 @@ class User {
   }
 
   String get getPassword {
-    return this.password;
+    return password;
   }
 
   set setPassword(String password) {

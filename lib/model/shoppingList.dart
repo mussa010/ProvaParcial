@@ -8,15 +8,15 @@ class ShoppingList {
   ShoppingList({required this.listName});
 
   String get getName {
-    return this.listName;
+    return listName;
   }
 
   set setName(String name) {
-    this.listName = name;
+    listName = name;
   }
 
   String get getCreatorName {
-    return this.cratorName;
+    return cratorName;
   }
 
   set setCreatorName(String cratorName) {

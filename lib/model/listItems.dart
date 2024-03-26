@@ -1,22 +1,22 @@
 class ListItems {
-  String _productName;
-  int _quantity;
+  String _productName = '';
+  int _quantity = 0;
 
   ListItems(this._productName, this._quantity);
 
   String get productName {
-    return this._productName;
+    return _productName;
   }
 
   set productName(String name) {
-    this._productName = name;
+    _productName = name;
   }
 
   int get qunatidadeProduto {
-    return this._quantity;
+    return _quantity;
   }
 
   set quantity(int quantity) {
-    this._quantity = quantity;
+    _quantity = quantity;
   }
 }
