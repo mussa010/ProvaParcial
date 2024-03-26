@@ -5,6 +5,7 @@ import '../model/user.dart';
 
 void main() {
   runApp(DevicePreview(builder: (context) => const MainApp()));
+  // runApp(const MainApp());
   String name = 'Matheus Teixeira Mussalam';
   String cpf = '1234567890';
   String mail = 'matheus.mussalam@sou.unaerp.edu.br';
