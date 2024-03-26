@@ -6,12 +6,13 @@ import '../model/user.dart';
 void main() {
   runApp(DevicePreview(builder: (context) => const MainApp()));
   String name = 'Matheus Teixeira Mussalam';
+  String cpf = '1234567890';
   String mail = 'matheus.mussalam@sou.unaerp.edu.br';
   String password = '1234567890';
 
   List<User> listUser = [];
 
-  listUser.add(User(name: name, mail: mail, password: password));
+  listUser.add(User(name: name, cpf: cpf,mail: mail, password: password));
 }
 
 class MainApp extends StatelessWidget {

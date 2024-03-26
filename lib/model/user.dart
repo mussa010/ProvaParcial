@@ -1,9 +1,10 @@
 class User {
   String name;
+  String cpf;
   String mail;
   String password;
 
-  User({required this.name, required this.mail, required this.password});
+  User({required this.name, required this.cpf, required this.mail, required this.password});
 
   fromJson(Map<String, dynamic> json) {
     name = json['name'];
