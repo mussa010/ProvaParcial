@@ -143,6 +143,7 @@ class _Login extends State<Login> {
                       child: const Text('Login'),
                     ),
                     SizedBox(height: 0.03 * (MediaQuery.of(context).size.height)),
+                    // Botão para ir para tela de cadastro
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
                         minimumSize: const Size(200, 60),
