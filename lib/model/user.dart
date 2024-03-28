@@ -1,15 +1,15 @@
 class User {
   String name = '';
   String cpf = '';
-  String mail = '';
+  String email = '';
   String password = '';
 
-  User({required this.name, required this.cpf, required this.mail, required this.password});
+  User({required this.name, required this.cpf, required this.email, required this.password});
 
   fromJson(Map<String, dynamic> json) {
     name = json['name'];
     cpf = json['cpf'];
-    mail = json['mail'];
+    email = json['email'];
     password = json['password'];
   }
 
@@ -17,29 +17,29 @@ class User {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
     data['cpf'] = cpf;
-    data['mail'] = mail;
+    data['email'] = email;
     data['password'] = password;
     return data;
   }
 
   String get getName {
-    return name;
+    return this.name;
   }
 
   set setName(String name) {
     this.name = name;
   }
 
-  String get getMail {
-    return mail;
+  String get getEmail {
+    return this.email;
   }
 
-  set setMail(String mail) {
-    this.mail = mail;
+  set setEmail(String email) {
+    this.email = email;
   }
 
   String get getPassword {
-    return password;
+    return this.password;
   }
 
   set setPassword(String password) {
@@ -47,7 +47,7 @@ class User {
   }
 
   get getCpf {
-    return cpf;
+    return this.cpf;
   }
 
   set setCpf(String cpf) {

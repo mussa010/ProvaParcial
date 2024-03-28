@@ -61,16 +61,11 @@ class _Login extends State<Login> {
                 Container(
                   height: MediaQuery.of(context).size.height / 8,
                   width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
-                  color: Colors.blue, 
-                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(50))
+                  decoration:  const BoxDecoration(
+                    color: Colors.blue, 
+                    borderRadius: BorderRadius.vertical(bottom: Radius.circular(50))
                   ),
-                  child: Container(
-                    color: Colors.blue,
-                    child: Image.asset('lib/imagens/login.png',
-                    
-                    ),
-                  ),
+                  child: Image.asset('lib/imagens/login.png')
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(50, 50, 50, 50),
@@ -84,7 +79,7 @@ class _Login extends State<Login> {
                           labelText: 'Informe seu e-mail',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50)),
-                          icon: const Icon(
+                          prefixIcon: const Icon(
                             Icons.mail,
                             color: Colors.red,
                           )),
@@ -106,7 +101,7 @@ class _Login extends State<Login> {
                           labelText: 'Informe sua senha',
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(50)),
-                          icon: const Icon(
+                          prefixIcon: const Icon(
                             Icons.password,
                             color: Colors.red,
                           )),

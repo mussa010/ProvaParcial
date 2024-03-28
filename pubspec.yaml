@@ -10,6 +10,7 @@ dependencies:
   device_preview: ^1.1.0
   flutter:
     sdk: flutter
+  mask_text_input_formatter: ^2.9.0
 
 dev_dependencies:
   flutter_test:
