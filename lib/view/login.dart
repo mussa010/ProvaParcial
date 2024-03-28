@@ -119,6 +119,9 @@ class _Login extends State<Login> {
                       },
                     ),
                     SizedBox(height: 0.05 * (MediaQuery.of(context).size.height)),
+                    // Botão para acessar aplicativo
+                    // Se o usuário existir e as informações estiverem corretas, o usuário irá para a tela seguinte
+                    // Senão, aparecerá uma mensagem de erro mostrando que, ou usuário não existe ou algum campo está errado
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
                         minimumSize: const Size(200, 60),
