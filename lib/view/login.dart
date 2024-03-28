@@ -16,7 +16,7 @@ class _Login extends State<Login> {
   var txtUsuario = TextEditingController();
   var txtSenha = TextEditingController();
 
-  caixaDialogo(context, titulo, mensagem) {
+  dialogBox(context, titulo, mensagem) {
     return showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -129,7 +129,7 @@ class _Login extends State<Login> {
                             var txt2 = txtSenha.text;
                 
                             var msg = 'Usuario: $txt1\nSenha: $txt2';
-                            caixaDialogo(context, "Usuário e senha", msg);
+                            dialogBox(context, "Usuário e senha", msg);
                           });
                         }
                       },
