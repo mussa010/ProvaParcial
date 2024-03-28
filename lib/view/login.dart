@@ -13,8 +13,8 @@ class _Login extends State<Login> {
   var status = false;
 
   //Controladores para os campos de texto
-  var txtUsuario = TextEditingController();
-  var txtSenha = TextEditingController();
+  var txtUser = TextEditingController();
+  var txtPassword = TextEditingController();
 
   dialogBox(context, titulo, mensagem) {
     return showDialog(
@@ -58,6 +58,7 @@ class _Login extends State<Login> {
         body: SingleChildScrollView(
             child: Column(
               children: [
+                // Container com imagem e tamanho responsivo
                 Container(
                   height: MediaQuery.of(context).size.height / 8,
                   width: MediaQuery.of(context).size.width,
@@ -72,9 +73,10 @@ class _Login extends State<Login> {
                   child: Form(
                   key: formKey,
                   child: Column(children: [
+                    // Campo de e-mail
                     TextFormField(
                       keyboardType: TextInputType.text,
-                      controller: txtUsuario,
+                      controller: txtUser,
                       decoration: InputDecoration(
                           labelText: 'Informe seu e-mail',
                           border: OutlineInputBorder(
@@ -83,6 +85,7 @@ class _Login extends State<Login> {
                             Icons.mail,
                             color: Colors.red,
                           )),
+                          // Validar se campo está vazio
                       validator: (value) {
                         if (value == null) {
                           return 'Campo vazio';
@@ -93,9 +96,10 @@ class _Login extends State<Login> {
                       },
                     ),
                     SizedBox(height: 0.03 * (MediaQuery.of(context).size.height)),
+                    // Campo de senha
                     TextFormField(
                       keyboardType: TextInputType.text,
-                      controller: txtSenha,
+                      controller: txtPassword,
                       obscureText: true,
                       decoration: InputDecoration(
                           labelText: 'Informe sua senha',
@@ -125,8 +129,8 @@ class _Login extends State<Login> {
                         if (formKey.currentState!.validate()) {
                           //Validação com sucesso
                           setState(() {
-                            var txt1 = txtUsuario.text;
-                            var txt2 = txtSenha.text;
+                            var txt1 = txtUser.text;
+                            var txt2 = txtPassword.text;
                 
                             var msg = 'Usuario: $txt1\nSenha: $txt2';
                             dialogBox(context, "Usuário e senha", msg);
