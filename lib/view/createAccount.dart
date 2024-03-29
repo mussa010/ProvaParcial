@@ -74,7 +74,7 @@ class _CreateAccount extends State<CreateAccount> {
                 borderRadius: BorderRadius.vertical(bottom: Radius.circular(50))
               ),
             ),
-            Padding(padding: const EdgeInsets.fromLTRB(50, 100, 50, 50),
+            Padding(padding: const EdgeInsets.fromLTRB(50, 50, 50, 50),
             child:  Form(
               key: formKey, 
               child: Column(children: [
@@ -185,7 +185,7 @@ class _CreateAccount extends State<CreateAccount> {
                     return null;
                   }
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.2),
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     minimumSize: const Size(200, 60),
