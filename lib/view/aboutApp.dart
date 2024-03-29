@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AboutApp extends StatelessWidget {
   const AboutApp({super.key});
@@ -7,22 +6,36 @@ class AboutApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container( 
-            alignment:Alignment.bottomLeft,
-            color: Colors.blue,
-            child: IconButton(
-              onPressed: () => Navigator.pop(context), 
-              icon: const Icon(
-                Icons.arrow_back, 
-                color: Colors.white
-              )
-            )
+      appBar: AppBar(
+        centerTitle: true,
+          title: const Text(
+            'Tela sobre aplicativo',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ],
+          leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+              size: 40,
+            ),
+            onPressed: () => Navigator.pop(context),
+          ),
+          backgroundColor: Colors.blue,
+        ),
+        body: Column(children: [
+          Container(
+            height: MediaQuery.of(context).size.height * 0.01,
+            width: MediaQuery.of(context).size.width,
+            decoration: const BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(50))
+            ),
+          )
 
-      ),
+        ],),
     );
   }
 }
