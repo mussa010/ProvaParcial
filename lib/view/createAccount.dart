@@ -198,6 +198,11 @@ class _CreateAccount extends State<CreateAccount> {
                       if(txtPassword.text == txtConfirmPassword.text) {
                         // User newUser = User(name: txtName.text, cpf: txtCpf.text, email: txtEmail.text, password: txtPassword.text);
                         print('Tudo certo');
+                        txtName.clear();
+                        txtCpf.clear();
+                        txtEmail.clear();
+                        txtPassword.clear();
+                        txtConfirmPassword.clear();
                       } else {
                         setState(() {
                           var titulo = "Erro";

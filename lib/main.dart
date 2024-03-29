@@ -4,6 +4,7 @@ import '../model/user.dart';
 
 import 'view/login.dart';
 import 'view/createAccount.dart';
+import 'view/aboutApp.dart';
 
 void main() {
   runApp(DevicePreview(
@@ -33,7 +34,8 @@ class MainApp extends StatelessWidget {
       initialRoute: 't1',
       routes: {
         't1': (context) =>  const Login(),
-        't2':(context) =>  const CreateAccount(),
+        't2': (context) => const AboutApp(),
+        't3':(context) =>  const CreateAccount(),
       }
 
     );

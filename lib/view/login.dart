@@ -48,10 +48,13 @@ class _Login extends State<Login> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          leading: const Icon(
-            Icons.account_circle_outlined,
-            color: Colors.white,
-            size: 40,
+          leading: IconButton(
+            icon: const Icon(
+              Icons.account_circle_outlined,
+              color: Colors.white,
+              size: 40,
+            ),
+            onPressed: () => Navigator.pushNamed(context, 't2'),
           ),
           backgroundColor: Colors.blue,
         ),
@@ -151,7 +154,7 @@ class _Login extends State<Login> {
                         foregroundColor: Colors.white,
                       ),
                       onPressed: () {
-                         Navigator.pushNamed(context, 't2');
+                         Navigator.pushNamed(context, 't3');
                 
                       },
                       child: const Text('Criar conta'),
