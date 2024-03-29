@@ -9,7 +9,7 @@ class AboutApp extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
           title: const Text(
-            'Tela sobre aplicativo',
+            'Sobre o aplicativo',
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
