@@ -23,7 +23,7 @@ class User {
   }
 
   String get getName {
-    return this.name;
+    return name;
   }
 
   set setName(String name) {
@@ -31,7 +31,7 @@ class User {
   }
 
   String get getEmail {
-    return this.email;
+    return email;
   }
 
   set setEmail(String email) {
@@ -39,7 +39,7 @@ class User {
   }
 
   String get getPassword {
-    return this.password;
+    return password;
   }
 
   set setPassword(String password) {
@@ -47,7 +47,7 @@ class User {
   }
 
   get getCpf {
-    return this.cpf;
+    return cpf;
   }
 
   set setCpf(String cpf) {
