@@ -1,10 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class AboutApp extends StatelessWidget {
   const AboutApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Column(
+        children: [
+          Container( 
+            alignment:Alignment.center,
+            color: Colors.blue,
+            child: IconButton(
+              onPressed: () => Navigator.pop(context), 
+              icon: const Icon(
+                Icons.arrow_back, 
+                color: Colors.white
+              )
+            )
+          ),
+        ],
+
+      ),
+    );
   }
 }
