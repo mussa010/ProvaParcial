@@ -10,7 +10,7 @@ class AboutApp extends StatelessWidget {
       body: Column(
         children: [
           Container( 
-            alignment:Alignment.center,
+            alignment:Alignment.bottomLeft,
             color: Colors.blue,
             child: IconButton(
               onPressed: () => Navigator.pop(context), 
