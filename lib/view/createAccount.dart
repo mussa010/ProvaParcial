@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-// import '../model/user.dart';
+import '../model/user.dart';
 
 class CreateAccount extends StatefulWidget {
   const CreateAccount({super.key});
@@ -63,6 +63,7 @@ class _CreateAccount extends State<CreateAccount> {
             onPressed: () => Navigator.pop(context),
           ),
           backgroundColor: Colors.blue,
+          
         ),
         body: SingleChildScrollView(
           child:  Column(children: [
@@ -74,7 +75,7 @@ class _CreateAccount extends State<CreateAccount> {
                 borderRadius: BorderRadius.vertical(bottom: Radius.circular(50))
               ),
             ),
-            Padding(padding: const EdgeInsets.fromLTRB(50, 50, 50, 50),
+            Padding(padding: const EdgeInsets.fromLTRB(50, 100, 50, 50),
             child:  Form(
               key: formKey, 
               child: Column(children: [
@@ -185,7 +186,7 @@ class _CreateAccount extends State<CreateAccount> {
                     return null;
                   }
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     minimumSize: const Size(200, 60),
@@ -198,11 +199,6 @@ class _CreateAccount extends State<CreateAccount> {
                       if(txtPassword.text == txtConfirmPassword.text) {
                         // User newUser = User(name: txtName.text, cpf: txtCpf.text, email: txtEmail.text, password: txtPassword.text);
                         print('Tudo certo');
-                        txtName.clear();
-                        txtCpf.clear();
-                        txtEmail.clear();
-                        txtPassword.clear();
-                        txtConfirmPassword.clear();
                       } else {
                         setState(() {
                           var titulo = "Erro";
@@ -217,7 +213,6 @@ class _CreateAccount extends State<CreateAccount> {
           ], 
           crossAxisAlignment: CrossAxisAlignment.center)
         )
-
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class AboutApp extends StatelessWidget {
   const AboutApp({super.key});
@@ -19,7 +20,6 @@ class AboutApp extends StatelessWidget {
             icon: const Icon(
               Icons.arrow_back,
               color: Colors.white,
-              size: 40,
             ),
             onPressed: () => Navigator.pop(context),
           ),
@@ -33,8 +33,10 @@ class AboutApp extends StatelessWidget {
               color: Colors.blue,
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(50))
             ),
+          ), 
+          const SingleChildScrollView(
+            child: Padding(padding: EdgeInsets.all(50)),
           )
-
         ],),
     );
   }
