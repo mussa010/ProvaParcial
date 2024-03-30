@@ -1,5 +1,3 @@
-import "./listItems.dart";
-
 class ShoppingList {
   int id = 0;
   String listName = '';
