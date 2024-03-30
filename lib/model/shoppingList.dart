@@ -1,11 +1,11 @@
 import "./listItems.dart";
 
 class ShoppingList {
+  int id = 0;
   String listName = '';
   String cratorName = '';
-  List<ListItems> shoppingList = [];
 
-  ShoppingList({required this.listName});
+  ShoppingList({required this.listName, required this.cratorName});
 
   String get getName {
     return listName;
@@ -21,5 +21,13 @@ class ShoppingList {
 
   set setCreatorName(String cratorName) {
     this.cratorName = cratorName;
+  }
+
+  set setId(int id) {
+    this.id = id;
+  }
+
+  get getId {
+    return id;
   }
 }

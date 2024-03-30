@@ -1,22 +1,31 @@
 class ListItems {
-  String _productName = '';
-  int _quantity = 0;
+  String productName = '';
+  int quantity = 0;
+  bool bought = false;
 
-  ListItems(this._productName, this._quantity);
+  ListItems({required this.productName, required this.quantity});
 
-  String get productName {
-    return _productName;
+  String get getProductName {
+    return productName;
   }
 
-  set productName(String name) {
-    _productName = name;
+  set setProductName(String name) {
+    productName = name;
   }
 
-  int get qunatidadeProduto {
-    return _quantity;
+  int get getProductQuantity {
+    return quantity;
   }
 
-  set quantity(int quantity) {
-    _quantity = quantity;
+  set setProductQuantity(int quantity) {
+    quantity = quantity;
+  }
+
+  bool get getBought {
+    return bought;
+  }
+
+  set setBought(bool bought) {
+    quantity = quantity;
   }
 }
