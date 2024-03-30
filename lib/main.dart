@@ -12,13 +12,13 @@ void main() {
     builder: (context) => const MainApp()));
   // runApp(const MainApp());
   String name = 'Matheus Teixeira Mussalam';
-  String cpf = '1234567890';
+  int id = 10;
   String email = 'matheus.mussalam@sou.unaerp.edu.br';
   String password = '1234567890';
 
   List<User> listUser = [];
 
-  listUser.add(User(name: name, cpf: cpf,email: email, password: password));
+  listUser.add(User(name: name, id: id,email: email, password: password));
 }
 
 class MainApp extends StatelessWidget {
