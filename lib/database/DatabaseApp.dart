@@ -58,7 +58,7 @@ class DB {
     ''';
 
     final String _createListItems = '''
-    CREATE TABLE ShoppingList(
+    CREATE TABLE ListItems(
       shoppingListName TEXT NOT NULL,
       productName TEXT NOT NULL, 
       quantity INTEGER,
@@ -66,7 +66,7 @@ class DB {
     )
     ''';
 
-   newUser(User newUser) async {
+   Future newUser(User newUser) async {
     final db = await _database;
     var res = await db?.rawInsert(
       '''
@@ -77,7 +77,7 @@ class DB {
     return res;
   }
 
-  getUser(int id) async {
+  Future getUser(int id) async {
     final db = _database;
     var res = await db?.query("User", where: "id = ?", whereArgs: [id]);
     if(res != Null) {
@@ -87,5 +87,24 @@ class DB {
       // ignore: dead_code
       print('Erro em recuperar usuário em banco sqlite');
     }
+  }
+
+  Future dropTableUser() async {
+    final db = _database;
+    var res = await db?.delete("User");
+    return res;
+  }
+
+
+  Future dropTableShoppingList() async {
+    final db = _database;
+    var res = await db?.delete("ShoppingList");
+    return res;
+  }
+
+  Future dropTableListItems() async {
+    final db = _database;
+    var res = await db?.delete("ListItems");
+    return res;
   }
 }

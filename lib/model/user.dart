@@ -2,11 +2,11 @@ import 'dart:convert';
 
 class User {
   String name = '';
-  int id = 0;
+  int? id;
   String email = '';
   String password = '';
 
-  User({required this.name, required this.id,required this.email, required this.password});
+  User({required this.name, required this.email, required this.password, this.id});
 
   String get getName {
     return name;

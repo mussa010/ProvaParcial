@@ -3,6 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
+import '../model/user.dart';
+import '../database/DatabaseApp.dart';
+
 
 class CreateAccount extends StatefulWidget {
   const CreateAccount({super.key});
@@ -18,7 +21,6 @@ class _CreateAccount extends State<CreateAccount> {
 
   //controladores para campo de texto
   var txtName = TextEditingController();
-  var txtCpf = TextEditingController();
   var txtEmail = TextEditingController();
   var txtPassword = TextEditingController();
   var txtConfirmPassword = TextEditingController();
@@ -89,28 +91,6 @@ class _CreateAccount extends State<CreateAccount> {
                     ),
                     prefixIcon: const Icon(Icons.person, color: Colors.red)
                   ), 
-                  validator: (value) {
-                    if(value == null) {
-                      return 'Campo vazio';
-                    } else if(value.isEmpty) {
-                      return 'Campo vazio';
-                    }
-                    return null;
-                  }
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
-                // Campo de inserção de cpf
-                TextFormField(
-                  keyboardType: TextInputType.emailAddress,
-                  inputFormatters: [mascaraCpf],
-                  controller: txtCpf,
-                  decoration: InputDecoration( 
-                    labelText: 'CPF',
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50)
-                    ),
-                    prefixIcon: const Icon(Icons.assignment_ind,color: Colors.red),
-                  ),
                   validator: (value) {
                     if(value == null) {
                       return 'Campo vazio';
@@ -196,8 +176,10 @@ class _CreateAccount extends State<CreateAccount> {
                     if(formKey.currentState!.validate()) {
                       // Algoritmo para criar conta e salvar no banco de dados
                       if(txtPassword.text == txtConfirmPassword.text) {
-                        // User newUser = User(name: txtName.text, cpf: txtCpf.text, email: txtEmail.text, password: txtPassword.text);
-                        print('Tudo certo');
+                        User newUser = User(name: txtName.text,  email: txtEmail.text, password: txtPassword.text);
+                        DB.db.newUser(newUser);
+
+                        print('usuário feito com sucesso');
                       } else {
                         setState(() {
                           var titulo = "Erro";
