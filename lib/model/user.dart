@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class User {
   String name = '';
   int id = 0;
@@ -5,22 +7,6 @@ class User {
   String password = '';
 
   User({required this.name, required this.id,required this.email, required this.password});
-
-  fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    id = json['id'];
-    email = json['email'];
-    password = json['password'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['name'] = name;
-    data['id'] = id;
-    data['email'] = email;
-    data['password'] = password;
-    return data;
-  }
 
   String get getName {
     return name;
@@ -52,5 +38,29 @@ class User {
 
   set setId (int id) {
     this.id = id;
+  }
+
+  factory User.fromMap(Map<String, dynamic> json) => User(
+    id: json["id"],
+    name: json["name"],
+    email: json["email"],
+    password: json["password"]
+  );
+
+  User userFromJson(String str) {
+    final jsonData = json.decode(str);
+    return User.fromMap(jsonData);
+  }
+
+  Map<String, dynamic> toMap() => {
+    "id" : id,
+    "name" : name,
+    "email" : email,
+    "password" : password
+  };
+
+  String userToJson(User data) {
+    final dyn = data.toMap();
+    return json.encode(dyn);
   }
 }

@@ -4,9 +4,12 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../model/user.dart';
+
 class DB {
   // Contrutor com acesso privado
   DB._();
+  static final DB db = DB._();
 
   // Instancia do SQLite
   static Database? _database;
@@ -29,12 +32,12 @@ class DB {
       onCreate: (Database db, int version) async{
         await db.execute(_createUserTable);
         await db.execute(_createShoppingListTable);
-      }
+        await db.execute(_createListItems);
+      }, 
+      onConfigure: (db) {
+        
+      },
     );
-  }
-
-  _onCreate(db, versao) async {
-    await db.execute();
   }
 
   final String _createUserTable = '''
@@ -54,5 +57,28 @@ class DB {
     )
     ''';
 
-  //  String _createTable =
+    final String _createListItems = '''
+    CREATE TABLE ShoppingList(
+      shoppingListName TEXT NOT NULL,
+      productName TEXT NOT NULL, 
+      quantity INTEGER,
+      bought BOOLEAN
+    )
+    ''';
+
+   newUser(User newUser) async {
+    final db = await _database;
+    var res = await db?.rawInsert(
+      '''
+        INSERT into User(name, email, password) VALUES 
+        (${newUser.getName}, ${newUser.getEmail}, ${newUser.getPassword})
+      '''
+    );
+    return res;
+  }
+
+  getUser(int id) async {
+    final db = await _database;
+    var res = await db?.query('User', where: "id = ?", whereArgs: [id]);
+  }
 }
