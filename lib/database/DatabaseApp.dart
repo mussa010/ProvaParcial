@@ -82,6 +82,10 @@ class DB {
     var res = await db?.query("User", where: "id = ?", whereArgs: [id]);
     if(res != Null) {
       return User.fromMap(res!.first);
+    } else {
+      return Null;
+      // ignore: dead_code
+      print('Erro em recuperar usuário em banco sqlite');
     }
   }
 }
