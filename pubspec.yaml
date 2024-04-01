@@ -10,7 +10,6 @@ dependencies:
   device_preview: ^1.1.0
   flutter:
     sdk: flutter
-  mask_text_input_formatter: ^2.9.0
   path_provider: ^2.1.2
   sqflite: ^2.3.2
   path: ^1.9.0

@@ -16,8 +16,6 @@ class _Login extends State<Login> {
   var txtUser = TextEditingController();
   var txtPassword = TextEditingController();
 
-  
-
   dialogBox(context, titulo, mensagem) {
     return showDialog(
       context: context,
@@ -40,8 +38,6 @@ class _Login extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    txtUser.text = '';
-    txtPassword.text = '';
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,

@@ -57,7 +57,7 @@ class _TestListView extends State<TestListView> {
 
                       leading: const Icon(Icons.person),
                       title: 
-                        Text('${item.getId}\n${item.getName}\n${item.getEmail}'),
+                        Text('Id: ${item.getId}\nNome: ${item.getName}\nE-mail${item.getEmail}'),
                       subtitle: Text('Senha: ${item.getPassword}'),
                     )
                   );

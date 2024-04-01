@@ -1,7 +1,6 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:flutter/material.dart';
-import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../model/user.dart';
 import '../database/userDAO.dart';
@@ -24,12 +23,6 @@ class _CreateAccount extends State<CreateAccount> {
   var txtEmail = TextEditingController();
   var txtPassword = TextEditingController();
   var txtConfirmPassword = TextEditingController();
-
-  var mascaraCpf = MaskTextInputFormatter(
-    mask: '###.###.###-##',
-    filter: {"#" : RegExp(r'[0-9]')},
-    type: MaskAutoCompletionType.lazy
-  );
 
   caixaDialogo(context, titulo, mensagem) {
     return showDialog(
