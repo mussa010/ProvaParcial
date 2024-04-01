@@ -23,13 +23,13 @@ class UserDAO {
 
   dropTableUser() async {
     final db = await Connection.get();
-    var res = await db!.delete("User");
+    var res = await db.delete("User");
     return res;
   }
 
   static Future<int> newUser(User newUser) async {
     final db = await Connection.get();
-    return db!.insert("User", newUser.toJson(),
+    return db.insert("User", newUser.toJson(),
       conflictAlgorithm: ConflictAlgorithm.replace
     );
   }
@@ -37,7 +37,7 @@ class UserDAO {
   Future<User?> getUser(String email) async {
     final db = await Connection.get();
 
-    List<Map<String, dynamic>> map = await db!.query("User", where: "email = ?", whereArgs: [email]);
+    List<Map<String, dynamic>> map = await db.query("User", where: "email = ?", whereArgs: [email]);
     if(map.isEmpty) {
       return null;
     }
@@ -48,7 +48,7 @@ class UserDAO {
   Future<List<User>> getAllUsers() async {
     final db = await Connection.get();
 
-    final List<Map<String, dynamic>> map = await db!.query("User");
+    final List<Map<String, dynamic>> map = await db.query("User");
 
     return List.generate(map.length, (index) => User.fromJson(map[index]));
   }
