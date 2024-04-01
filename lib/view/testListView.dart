@@ -81,7 +81,8 @@ class _TestListView extends State<TestListView> {
                 },
               );
             } else {
-
+              const String mensagem = 'Banco de dados não possui dado cadastrado';
+                dialogBox(context, 'Erro', mensagem);
             }
             return const Center(child: CircularProgressIndicator());
           },
