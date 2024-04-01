@@ -4,7 +4,6 @@ import 'package:sqflite/sqflite.dart';
 import '../database/connection.dart';
 
 class UserDAO {
-  Database? _db;
 
   // Future<List<User>> getAllUser() async {
   //   _db = await Connection.get();
@@ -23,30 +22,34 @@ class UserDAO {
   //   }
 
   dropTableUser() async {
-    _db = await instance.;
-    var res = await _db!.delete("User");
+    final db = await Connection.get();
+    var res = await db!.delete("User");
     return res;
   }
 
-  Future<int> newuser(User newUser) async {
-    
-    _db!.insert(table, values)
+  static Future<int> newUser(User newUser) async {
+    final db = await Connection.get();
+    return db!.insert("User", newUser.toJson(),
+      conflictAlgorithm: ConflictAlgorithm.replace
+    );
   }
 
-  getUser(int id) async {
-    _db = await ;
+  Future<User?> getUser(String email) async {
+    final db = await Connection.get();
 
-    var res = await _db!.query("User", where: "id = ?", whereArgs: [id]);
-
-    return res.isNotEmpty ? User.fromMap(res.first) : Null;
+    List<Map<String, dynamic>> map = await db!.query("User", where: "email = ?", whereArgs: [email]);
+    if(map.isEmpty) {
+      return null;
+    }
+    return User.fromJson(map[0]);
+    
   }
 
   Future<List<User>> getAllUsers() async {
-    _db = await Connection.get();
+    final db = await Connection.get();
 
-    var res = await _db!.query("User");
-    List<User> lista = res.isNotEmpty ? res.map((u) => User.fromMap(u)).toList() : [];
+    final List<Map<String, dynamic>> map = await db!.query("User");
 
-    return lista;
+    return List.generate(map.length, (index) => User.fromJson(map[index]));
   }
 }

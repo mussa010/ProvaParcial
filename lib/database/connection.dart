@@ -8,16 +8,12 @@ import '../database/script.dart';
 class Connection {
 
   Connection._();
-  
-
-  // Instancia do SQLite
-  static Database? _db;
 
   // Inicialização banco de dados
-  static Future<Database?> get() async {
-    if(_db == null) {
+  static Future<Database> get() async {
+    Database db;
       var path = join(await getDatabasesPath(), 'ListaDeCompras.db');
-        _db = await openDatabase(
+        db = await openDatabase(
         path,
         version: 1,
         // onConfigure: 
@@ -30,12 +26,14 @@ class Connection {
           
         },
       );
-    }
-    return _db;
+    return db;
   } 
 
   static Future<bool> isConnected() async{
-    _db = await get();
-    return _db!.isOpen;
+    final db = await get();
+    if(db.isOpen) {
+      return false;
+    }
+    return true;
   } 
 }

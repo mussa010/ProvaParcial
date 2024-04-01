@@ -177,9 +177,13 @@ class _CreateAccount extends State<CreateAccount> {
                       // Algoritmo para criar conta e salvar no banco de dados
                       if(txtPassword.text == txtConfirmPassword.text) {
                         User newUser = User(name: txtName.text,  email: txtEmail.text, password: txtPassword.text);
-                        UserDAO().newuser(newUser);
-
+                        UserDAO.newUser(newUser);
+                        txtName.clear();
+                        txtEmail.clear();
+                        txtPassword.clear();
+                        txtConfirmPassword.clear();
                         print('usuário feito com sucesso');
+
                       } else {
                         setState(() {
                           var titulo = "Erro";

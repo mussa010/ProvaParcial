@@ -47,7 +47,10 @@ class _TestListView extends State<TestListView> {
                 itemCount: snapshot.data!.length,
                 itemBuilder: (BuildContext context, int index) {
                   User item = snapshot.data![index];
-                  if(Connection.isConnected() == false) return null;
+                  if(Connection.isConnected() == false){
+                    dialogBox(context, 'Erro', 'Falha na conexão com banco de dados');
+                    Navigator.pop(context,'ok');
+                  }
                   else{
                     return Card(
                     child: ListTile(
@@ -62,8 +65,7 @@ class _TestListView extends State<TestListView> {
                 },
               );
             } else {
-              print('Falha na conexão com banco de dados ');
-              dialogBox(context, 'Erro', 'Falha na conexão com banco de dados');
+
             }
             return const Center(child: CircularProgressIndicator());
           },
