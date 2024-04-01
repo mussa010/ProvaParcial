@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 import '../model/user.dart';
-import '../database/DatabaseApp.dart';
+import '../database/userDAO.dart';
 
 
 class CreateAccount extends StatefulWidget {
@@ -177,7 +177,7 @@ class _CreateAccount extends State<CreateAccount> {
                       // Algoritmo para criar conta e salvar no banco de dados
                       if(txtPassword.text == txtConfirmPassword.text) {
                         User newUser = User(name: txtName.text,  email: txtEmail.text, password: txtPassword.text);
-                        DB.db.newUser(newUser);
+                        UserDAO().newuser(newUser);
 
                         print('usuário feito com sucesso');
                       } else {
