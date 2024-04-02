@@ -21,6 +21,7 @@ class Connection {
           await db.execute(createUserTable);
           await db.execute(createShoppingListTable);
           await db.execute(createListItems);
+          await db.execute(creatAdminUser);
         }, 
         onConfigure: (db) {
           

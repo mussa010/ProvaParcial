@@ -36,21 +36,6 @@ class _TestListView extends State<TestListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          centerTitle: true,
-          title: const Text(
-            'Tela de lista de usuários',
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () => Navigator.pop(context),
-          ),
-          backgroundColor: Colors.blue,
-        ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: FutureBuilder<List<User>>(
@@ -72,7 +57,7 @@ class _TestListView extends State<TestListView> {
 
                       leading: const Icon(Icons.person),
                       title: 
-                        Text('Id: ${item.getId}\nNome: ${item.getName}\nE-mail: ${item.getEmail}'),
+                        Text('${item.getId}\n${item.getName}\n${item.getEmail}'),
                       subtitle: Text('Senha: ${item.getPassword}'),
                     )
                   );
@@ -81,8 +66,7 @@ class _TestListView extends State<TestListView> {
                 },
               );
             } else {
-              // const String mensagem = 'Banco de dados não possui dado cadastrado';
-              //   dialogBox(context, 'Erro', mensagem);
+
             }
             return const Center(child: CircularProgressIndicator());
           },

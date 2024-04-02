@@ -33,7 +33,10 @@ class _CreateAccount extends State<CreateAccount> {
         actions: [
           TextButton(onPressed: () => Navigator.pop(context, 'Voltar'),
           child: const Text('Voltar'))
+
+
         ],
+
       ));
   }
 
@@ -54,6 +57,7 @@ class _CreateAccount extends State<CreateAccount> {
             onPressed: () => Navigator.pop(context),
           ),
           backgroundColor: Colors.blue,
+          
         ),
         body: SingleChildScrollView(
           child:  Column(children: [

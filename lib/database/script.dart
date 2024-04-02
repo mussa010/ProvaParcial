@@ -27,3 +27,7 @@
       bought BOOLEAN
     )
     ''';
+
+    const String creatAdminUser = '''
+      INSERT INTO User(name, email, password) VALUES ("admin", "admin@admin", "admin")
+    ''';
