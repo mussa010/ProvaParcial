@@ -13,6 +13,8 @@ class TestListView extends StatefulWidget {
 
 class _TestListView extends State<TestListView> {
 
+  late Future<List<User>> allUsers;
+
   dialogBox(context, titulo, mensagem) {
     return showDialog(
       context: context,
@@ -34,6 +36,11 @@ class _TestListView extends State<TestListView> {
   }
   
   @override
+
+loadAllUsers() async {
+  allUsers = UserDAO()!.getAllUsers();
+}
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class ListItems {
   String shoppingListName = '';
   String productName = '';
@@ -40,27 +38,17 @@ class ListItems {
     quantity = quantity;
   }
 
-  factory ListItems.fromMap(Map<String, dynamic> json) => ListItems(
-    shoppingListName : json["shoppingListName"],
-    productName:  json["productName"],
-    quantity : json["quantity"],
-    bought : json["bought"]
+  factory ListItems.fromJson(Map<String, dynamic> json) => ListItems(
+     shoppingListName : json['shoppingListName'],
+     productName : json['productName'],
+     quantity : json['quantity'],
+     bought : json['bought']
   );
 
-  ListItems listItemsFromJson(String str) {
-    final jsonData = json.decode(str);
-    return ListItems.fromMap(jsonData);
-  }
-
-  Map<String, dynamic> toMap() => {
-    "shoppingListName" : shoppingListName,
-    "productName" : productName,
-    "quantity" : quantity,
-    "bought" : bought
+  Map<String, dynamic> toJson() => {
+    'shoppingListName' : shoppingListName,
+    'productName' : productName,
+    'quantity' : quantity,
+    'bought' : bought
   };
-
-  String listItemsToJson (ListItems data) {
-    final dyn = data.toMap();
-    return json.encode(dyn);
-  }
 }

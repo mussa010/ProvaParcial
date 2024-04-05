@@ -14,6 +14,8 @@
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       listName TEXT NOT NULL,
       creatorName TEXT NOT NULL
+
+      FOREIGN KEY (creatorName)  REFERENCES User (name)
     )
     ''';
 
@@ -25,9 +27,14 @@
       productName TEXT NOT NULL, 
       quantity INTEGER,
       bought BOOLEAN
-    )
+
+      FOREIGN KEY (shoppingListName) REFERENCES ShoppingList (listName)
     ''';
 
     const String creatAdminUser = '''
       INSERT INTO User(name, email, password) VALUES ("admin", "admin@admin", "admin")
+    ''';
+
+    const String dropUser = '''
+      DROP TABLE IF EXISTS User
     ''';

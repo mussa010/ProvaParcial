@@ -1,5 +1,6 @@
 import '../model/user.dart';
 import 'package:sqflite/sqflite.dart';
+import '../database/script.dart';
 
 import '../database/connection.dart';
 
@@ -21,10 +22,9 @@ class UserDAO {
   //   return lista;
   //   }
 
-  dropTableUser() async {
+  Future<void> dropTableUser() async {
     final db = await Connection.get();
-    var res = await db.delete("User");
-    return res;
+    await db.execute(dropUser);
   }
 
   static Future<int> newUser(User newUser) async {

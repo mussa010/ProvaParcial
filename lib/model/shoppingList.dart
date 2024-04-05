@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 class ShoppingList {
   int id = 0;
   String listName = '';
@@ -31,25 +29,15 @@ class ShoppingList {
     return id;
   }
 
-  factory ShoppingList.fromMap(Map<String, dynamic> json) => ShoppingList(
-    id : json["id"],
-    listName : json["lisName"],
-    cratorName : json["cratorName"]
+  factory ShoppingList.fromJson(Map<String, dynamic> json) => ShoppingList(
+    id : json['id'],
+    listName : json['listName'],
+    cratorName : json['cratorName']
   );
 
-  ShoppingList shoppingListFromJson(String str) {
-    final jsonData = json.decode(str);
-    return ShoppingList.fromMap(jsonData);
-  }
-
-  Map<String, dynamic> toMap() => {
-    "id" : id,
-    "listName" : listName,
-    "cratorName" : cratorName
+  Map<String, dynamic> toJson() => {
+    'id' : id,
+    'listName' : listName,
+    'cratorName' : cratorName
   };
-
-  String shoppingListToJson (ShoppingList data) {
-    final dyn = data.toMap();
-    return json.encode(dyn);
-  }
 }
