@@ -29,6 +29,7 @@
       bought BOOLEAN
 
       FOREIGN KEY (shoppingListName) REFERENCES ShoppingList (listName)
+    )
     ''';
 
     const String creatAdminUser = '''

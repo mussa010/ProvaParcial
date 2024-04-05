@@ -38,7 +38,7 @@ class _TestListView extends State<TestListView> {
   @override
 
 loadAllUsers() async {
-  allUsers = UserDAO()!.getAllUsers();
+  allUsers = UserDAO().getAllUsers();
 }
 
   Widget build(BuildContext context) {
