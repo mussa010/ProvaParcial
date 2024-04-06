@@ -5,6 +5,7 @@ import 'package:prova_parcial/view/testListView.dart';
 import '../view/login.dart';
 import '../view/createAccount.dart';
 import '../view/aboutApp.dart';
+import 'view/menuShoppingListView.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -35,7 +36,8 @@ class MainApp extends StatelessWidget {
         't1': (context) =>  const Login(),
         't2': (context) => const AboutApp(),
         't3':(context) =>  const CreateAccount(),
-        't4': (context) => const TestListView()
+        't4': (context) => const TestListView(),
+        't5' : (context) => const MenuShoppingListView()
       }
 
     );

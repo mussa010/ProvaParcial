@@ -11,11 +11,22 @@ class ShoppingListDAO  {
     conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  Future<List<ShoppingList?>> getShoppingList(String nameUser) async{
+  static Future<List<ShoppingList?>> getShoppingList(String nameUser) async{
     final db = await Connection.get();
 
     List<Map<String, dynamic>> map = await db.query('ShoppingList', where: 'creatorName = ?', whereArgs: [nameUser]);
 
     return List.generate(map.length, (index) => ShoppingList.fromJson(map[index]));
+  }
+
+  static Future<int> lenghtShoppingListUser(String nameUser) async {
+    final db = await Connection.get();
+    List<Map<String, dynamic>> map = await db.query('ShoppingList', where: 'creatorName = ?', whereArgs: [nameUser]);
+    if(map.isEmpty) {
+      return 0;
+    }
+    List<ShoppingList> shooppingListUser= List.generate(map.length, (index) => ShoppingList.fromJson(map[index]));
+
+    return shooppingListUser.length;
   }
 }

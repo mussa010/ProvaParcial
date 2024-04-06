@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:prova_parcial/database/userDAO.dart';
+
+import '../model/user.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -138,13 +141,11 @@ class _Login extends State<Login> {
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
                           //Validação com sucesso
-                          setState(() {
-                            var txt1 = txtUser.text;
-                            var txt2 = txtPassword.text;
-                
-                            var msg = 'Usuario: $txt1\nSenha: $txt2';
-                            dialogBox(context, "Usuário e senha", msg);
-                          });
+
+                          //Continuar daqui
+                          User? user =  await UserDAO.getUser(txtUser.toString());
+
+                          
                         }
                       },
                       child: const Text('Login'),

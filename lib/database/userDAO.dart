@@ -6,23 +6,7 @@ import '../database/connection.dart';
 
 class UserDAO {
 
-  // Future<List<User>> getAllUser() async {
-  //   _db = await Connection.get();
-  //   List<Map<String,dynamic>> res = await _db!.query("user");  
-  //   List<User> lista = List.generate(res.length, (i) {
-  //     var linha = res[i];
-  //     return User(
-  //       id: linha['id'],
-  //       name:linha['name'],
-  //       email: linha['email'],
-  //       password: linha['password']
-  //     );
-  //   }
-  //   );
-  //   return lista;
-  //   }
-
-  Future<void> dropTableUser() async {
+  static Future<void> dropTableUser() async {
     final db = await Connection.get();
     await db.execute(dropUser);
   }
@@ -34,7 +18,7 @@ class UserDAO {
     );
   }
 
-  Future<User?> getUser(String email) async {
+  static Future<User?> getUser(String email) async {
     final db = await Connection.get();
 
     List<Map<String, dynamic>> map = await db.query("User", where: "email = ?", whereArgs: [email]);
@@ -42,14 +26,24 @@ class UserDAO {
       return null;
     }
     return User.fromJson(map[0]);
-    
   }
 
-  Future<List<User>> getAllUsers() async {
+  static Future<List<User>> getAllUsers() async{
     final db = await Connection.get();
 
     final List<Map<String, dynamic>> map = await db.query("User");
 
-    return List.generate(map.length, (index) => User.fromJson(map[index]));
+    List<User> allUsers = List.generate(map.length, (index) => User.fromJson(map[index]));
+
+    return allUsers;
+  }
+
+  static Future<int> lenght() async {
+    final db = await Connection.get();
+    final List<Map<String, dynamic>> map = await db.query("User");
+
+    List<User> allUsers = List.generate(map.length, (index) => User.fromJson(map[index]));
+
+    return allUsers.length;
   }
 }

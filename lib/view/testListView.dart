@@ -12,9 +12,6 @@ class TestListView extends StatefulWidget {
 }
 
 class _TestListView extends State<TestListView> {
-
-  late Future<List<User>> allUsers;
-
   dialogBox(context, titulo, mensagem) {
     return showDialog(
       context: context,
@@ -34,14 +31,39 @@ class _TestListView extends State<TestListView> {
       ),
     );
   }
+   
   
+  final allUsers = UserDAO.getAllUsers();
+  Future<int> tamUsers =  UserDAO.lenght();
+
   @override
-
-loadAllUsers() async {
-  allUsers = UserDAO().getAllUsers();
-}
-
   Widget build(BuildContext context) {
+    if(tamUsers == 0) {
+      return Scaffold(appBar: AppBar(
+          centerTitle: true,
+          title: const Text(
+            'Tela de lista de usuários',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.pop(context),
+          ),
+          backgroundColor: Colors.blue,
+        ),
+        body: Container(
+          alignment: Alignment.center,
+          height: MediaQuery.of(context).size.height * 0.5,
+          width: MediaQuery.of(context).size.width * 0.8,
+          child: const Text('Não há usuário cadastrado', style: TextStyle(
+            color: Colors.white, 
+            backgroundColor: Colors.blue)),
+        )
+      );
+    }
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
@@ -62,7 +84,7 @@ loadAllUsers() async {
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: FutureBuilder<List<User>>(
-          future: UserDAO().getAllUsers(),
+          future: allUsers,
           builder: (BuildContext context, AsyncSnapshot<List<User>> snapshot ) {
             //Verificar se banco de dados existe
             if(snapshot.hasData) {
@@ -88,10 +110,16 @@ loadAllUsers() async {
                   return null;
                 },
               );
-            } else {
-
-            }
-            return const Center(child: CircularProgressIndicator());
+            } 
+            return Container(
+              alignment: Alignment.center,
+                child: const Text('Não há usuário cadastrado',
+                style: TextStyle(
+                  backgroundColor: Colors.blue,
+                  color: Colors.white
+                ),
+              )
+            );
           },
         )
       )

@@ -33,10 +33,7 @@ class _CreateAccount extends State<CreateAccount> {
         actions: [
           TextButton(onPressed: () => Navigator.pop(context, 'Voltar'),
           child: const Text('Voltar'))
-
-
         ],
-
       ));
   }
 
@@ -176,6 +173,7 @@ class _CreateAccount extends State<CreateAccount> {
                         txtPassword.clear();
                         txtConfirmPassword.clear();
                         print('usuário feito com sucesso');
+                        caixaDialogo(context, 'Criação de usuário', 'Usuário criado com sucesso.');
 
                       } else {
                         setState(() {
