@@ -1,13 +1,8 @@
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:prova_parcial/repositories/repository.dart';
 import 'package:provider/provider.dart';
 
 import '../model/shoppingList.dart';
-import '../model/user.dart';
 
 class MenuShoppingListView extends StatefulWidget {
   const MenuShoppingListView({super.key});
