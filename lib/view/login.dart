@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:prova_parcial/database/userDAO.dart';
+import 'package:prova_parcial/repositories/userRepository.dart';
+import 'package:provider/provider.dart';
 
 import '../model/user.dart';
 
@@ -20,7 +21,6 @@ class _Login extends State<Login> {
   var txtPassword = TextEditingController();
 
   
-
   dialogBox(context, titulo, mensagem) {
     return showDialog(
       context: context,
@@ -41,8 +41,16 @@ class _Login extends State<Login> {
     );
   }
 
+
+
   @override
   Widget build(BuildContext context) {
+    List<User> listUser = Provider.of<Repository>(context).getListAllUser;
+    if(listUser.isEmpty) {
+      listUser.add(User(email: 'admin@admin', name: 'admin', password: 'admin'));
+      Provider.of<Repository>(context).saveAll(listUser);
+    } else {
+    }
     txtUser.text = '';
     txtPassword.text = '';
     return Scaffold(
@@ -61,7 +69,7 @@ class _Login extends State<Login> {
               color: Colors.white,
               size: 40,
             ),
-            onPressed: () => Navigator.pushNamed(context, 't4'),
+            onPressed: () => Navigator.pushNamed(context, 't4', arguments: listUser),
           ),
           backgroundColor: Colors.blue,
         ),
@@ -140,12 +148,19 @@ class _Login extends State<Login> {
                       ),
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
+                          bool founded = false;
                           //Validação com sucesso
 
                           //Continuar daqui
-                          User? user =  await UserDAO.getUser(txtUser.toString());
-
-                          
+                          for(User user in listUser) {
+                            if(txtUser.text == user.getEmail && txtPassword.text == user.getPassword) {
+                              founded = true;
+                              Navigator.pushNamed(context, 't5');
+                            } 
+                          }
+                          if(founded == false) {
+                            dialogBox(context, 'Erro', 'Usuário ou senha incorreta');
+                          }
                         }
                       },
                       child: const Text('Login'),
@@ -160,7 +175,6 @@ class _Login extends State<Login> {
                       ),
                       onPressed: () {
                          Navigator.pushNamed(context, 't3');
-                
                       },
                       child: const Text('Criar conta'),
                     ),

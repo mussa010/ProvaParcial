@@ -1,6 +1,9 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:prova_parcial/repositories/userRepository.dart';
 import 'package:prova_parcial/view/testListView.dart';
+import 'package:provider/provider.dart';
 
 import '../view/login.dart';
 import '../view/createAccount.dart';
@@ -15,10 +18,12 @@ void main() {
     )
   );
 
-  // runApp(DevicePreview(
-  //   enabled: true,
-  //   builder: (context) => const MainApp()));
-  runApp(const MainApp());
+  runApp(
+    ChangeNotifierProvider(create: (context) => Repository(),
+      child: DevicePreview(
+       enabled: true,
+        builder: (context) => const MainApp())),
+    );
 }
 
 class MainApp extends StatelessWidget {
@@ -37,7 +42,7 @@ class MainApp extends StatelessWidget {
         't2': (context) => const AboutApp(),
         't3':(context) =>  const CreateAccount(),
         't4': (context) => const TestListView(),
-        't5' : (context) => const MenuShoppingListView()
+        't5' : (context) => const AboutApp()
       }
 
     );

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'package:sqflite/sqflite.dart';
-import '../database/connection.dart';
-import '../database/userDAO.dart';
+import 'package:provider/provider.dart';
 import '../model/user.dart';
+import '../repositories/userRepository.dart';
 
 class TestListView extends StatefulWidget {
   const TestListView({super.key});
@@ -19,10 +18,6 @@ class _TestListView extends State<TestListView> {
         title: Text(titulo),
         content: Text(mensagem),
         actions: [
-          // TextButton(
-          //   onPressed: () => Navigator.pop(context, 'cancelar'),
-          //   child: const Text('cancelar'),
-          // ),
           TextButton(
             onPressed: () => Navigator.pop(context, 't1'),
             child: const Text('ok'),
@@ -31,14 +26,13 @@ class _TestListView extends State<TestListView> {
       ),
     );
   }
-   
-  
-  final allUsers = UserDAO.getAllUsers();
-  Future<int> tamUsers =  UserDAO.lenght();
 
+  
+  
   @override
   Widget build(BuildContext context) {
-    if(tamUsers == 0) {
+    List<User> listUser = Provider.of<Repository>(context).getListAllUser;
+    if(listUser.isEmpty) {
       return Scaffold(appBar: AppBar(
           centerTitle: true,
           title: const Text(
@@ -56,11 +50,10 @@ class _TestListView extends State<TestListView> {
         ),
         body: Container(
           alignment: Alignment.center,
-          height: MediaQuery.of(context).size.height * 0.5,
-          width: MediaQuery.of(context).size.width * 0.8,
           child: const Text('Não há usuário cadastrado', style: TextStyle(
             color: Colors.white, 
-            backgroundColor: Colors.blue)),
+            backgroundColor: Colors.blue)
+          ),
         )
       );
     }
@@ -83,45 +76,20 @@ class _TestListView extends State<TestListView> {
         ),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: FutureBuilder<List<User>>(
-          future: allUsers,
-          builder: (BuildContext context, AsyncSnapshot<List<User>> snapshot ) {
-            //Verificar se banco de dados existe
-            if(snapshot.hasData) {
-              return ListView.builder(
-                itemCount: snapshot.data!.length,
+        child: ListView.builder(
+                itemCount: listUser.length,
                 itemBuilder: (BuildContext context, int index) {
-                  User item = snapshot.data![index];
-                  if(Connection.isConnected() == false){
-                    dialogBox(context, 'Erro', 'Falha na conexão com banco de dados');
-                    Navigator.pop(context,'ok');
-                  }
-                  else{
                     return Card(
                     child: ListTile(
-
                       leading: const Icon(Icons.person),
                       title: 
-                        Text('${item.getId}\n${item.getName}\n${item.getEmail}'),
-                      subtitle: Text('Senha: ${item.getPassword}'),
+                        Text('Nome: ${listUser[index].getName}\nEmail: ${listUser[index].getEmail}'),
+                      subtitle: Text('Senha: ${listUser[index].getPassword}'),
                     )
                   );
-                  }
-                  return null;
+                  
                 },
-              );
-            } 
-            return Container(
-              alignment: Alignment.center,
-                child: const Text('Não há usuário cadastrado',
-                style: TextStyle(
-                  backgroundColor: Colors.blue,
-                  color: Colors.white
-                ),
               )
-            );
-          },
-        )
       )
     );
   }

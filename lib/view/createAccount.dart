@@ -1,9 +1,10 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../repositories/userRepository.dart';
 
 import '../model/user.dart';
-import '../database/userDAO.dart';
 
 
 class CreateAccount extends StatefulWidget {
@@ -24,6 +25,7 @@ class _CreateAccount extends State<CreateAccount> {
   var txtPassword = TextEditingController();
   var txtConfirmPassword = TextEditingController();
 
+
   caixaDialogo(context, titulo, mensagem) {
     return showDialog(
       context: context, 
@@ -39,6 +41,7 @@ class _CreateAccount extends State<CreateAccount> {
 
   @override
   Widget build(BuildContext context) {
+    final save = Provider.of<Repository>(context);
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -166,15 +169,15 @@ class _CreateAccount extends State<CreateAccount> {
                     if(formKey.currentState!.validate()) {
                       // Algoritmo para criar conta e salvar no banco de dados
                       if(txtPassword.text == txtConfirmPassword.text) {
-                        User newUser = User(name: txtName.text,  email: txtEmail.text, password: txtPassword.text);
-                        UserDAO.newUser(newUser);
-                        txtName.clear();
-                        txtEmail.clear();
-                        txtPassword.clear();
-                        txtConfirmPassword.clear();
-                        print('usuário feito com sucesso');
+                        User user = User(name: txtName.text,  email: txtEmail.text, password: txtPassword.text);
+                        save.saveUser(user);
+                        setState(() {
+                          txtName.clear();
+                          txtEmail.clear();
+                          txtPassword.clear();
+                          txtConfirmPassword.clear();
+                        });
                         caixaDialogo(context, 'Criação de usuário', 'Usuário criado com sucesso.');
-
                       } else {
                         setState(() {
                           var titulo = "Erro";
