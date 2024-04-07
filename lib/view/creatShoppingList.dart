@@ -81,7 +81,7 @@ class _CreatShoppingList extends State<CreatShoppingList> {
             key: formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
               TextFormField(
                 keyboardType: TextInputType.text,

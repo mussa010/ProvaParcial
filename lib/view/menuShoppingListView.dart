@@ -57,11 +57,10 @@ class _MenuShoppingListView extends State<MenuShoppingListView> {
         ),
         body: Container(
           alignment: Alignment.center,
-          height: MediaQuery.of(context).size.height * 0.5,
-          width: MediaQuery.of(context).size.width * 0.8,
-          child: const Text('Não há usuário cadastrado', style: TextStyle(
-            color: Colors.white, 
-            backgroundColor: Colors.blue)
+          child: const Text('Não há lista cadastrada', style: TextStyle(
+            color: Colors.black,
+            fontSize: 20
+          )
           ),
         )
       );
@@ -94,11 +93,12 @@ class _MenuShoppingListView extends State<MenuShoppingListView> {
                 itemCount: listShoppingList.length,
                 itemBuilder: (BuildContext context, int index) {
                     return Card(
+                    color: Colors.blue,
                     child: ListTile(
-                      leading: const Icon(Icons.person),
+                      leading: const Icon(Icons.list, color: Colors.white,),
                       title: 
-                        Text('Nome: ${listShoppingList[index].getName}\nEmail: ${listShoppingList[index].getCreatorName}'),
-                      subtitle: const Text('Deu certo'),
+                        Text(listShoppingList[index].getName,
+                        style: const TextStyle(color: Colors.white),),
                     )
                   );
                   
