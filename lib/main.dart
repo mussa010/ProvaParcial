@@ -9,7 +9,7 @@ import '../view/login.dart';
 import '../view/createAccount.dart';
 import '../view/aboutApp.dart';
 import '../view/menuShoppingListView.dart';
-import '../view/creatShoppingList.dart';
+import 'view/createShoppingList.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
