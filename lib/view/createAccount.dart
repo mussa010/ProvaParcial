@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../repositories/userRepository.dart';
+import '../repositories/repository.dart';
 
 import '../model/user.dart';
 

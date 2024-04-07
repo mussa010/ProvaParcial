@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../model/user.dart';
-import '../repositories/userRepository.dart';
+import '../repositories/repository.dart';
 
 class TestListView extends StatefulWidget {
   const TestListView({super.key});
@@ -33,7 +33,8 @@ class _TestListView extends State<TestListView> {
   Widget build(BuildContext context) {
     List<User> listUser = Provider.of<Repository>(context).getListAllUser;
     if(listUser.isEmpty) {
-      return Scaffold(appBar: AppBar(
+      return Scaffold(
+      appBar: AppBar(
           centerTitle: true,
           title: const Text(
             'Tela de lista de usuários',
@@ -50,6 +51,8 @@ class _TestListView extends State<TestListView> {
         ),
         body: Container(
           alignment: Alignment.center,
+          height: MediaQuery.of(context).size.height * 0.5,
+          width: MediaQuery.of(context).size.width * 0.8,
           child: const Text('Não há usuário cadastrado', style: TextStyle(
             color: Colors.white, 
             backgroundColor: Colors.blue)

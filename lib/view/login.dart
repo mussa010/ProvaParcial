@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prova_parcial/repositories/userRepository.dart';
+import 'package:prova_parcial/repositories/repository.dart';
 import 'package:provider/provider.dart';
 
 import '../model/user.dart';
@@ -46,6 +46,7 @@ class _Login extends State<Login> {
   @override
   Widget build(BuildContext context) {
     List<User> listUser = Provider.of<Repository>(context).getListAllUser;
+    var saveUserName = Provider.of<Repository>(context);
     if(listUser.isEmpty) {
       listUser.add(User(email: 'admin@admin', name: 'admin', password: 'admin'));
       Provider.of<Repository>(context).saveAll(listUser);
@@ -148,14 +149,14 @@ class _Login extends State<Login> {
                       ),
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          bool founded = false;
                           //Validação com sucesso
+                          bool founded = false;
 
-                          //Continuar daqui
                           for(User user in listUser) {
                             if(txtUser.text == user.getEmail && txtPassword.text == user.getPassword) {
                               founded = true;
-                              Navigator.pushNamed(context, 't5');
+                              saveUserName.setUserName(user.getName);
+                              Navigator.pushNamed(context, 't6');
                             } 
                           }
                           if(founded == false) {
