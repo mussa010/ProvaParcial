@@ -47,7 +47,6 @@ class MainApp extends StatelessWidget {
         't6' : (context) => const MenuShoppingListView(),
         't7' : (context) => const CreatShoppingList()
       }
-
     );
   }
 }
