@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:prova_parcial/model/listItems.dart';
+import 'package:prova_parcial/model/itemsList.dart';
 
 import '../model/user.dart';
 import '../model/shoppingList.dart';
+import '../model/itemsList.dart';
 
 class Repository extends ChangeNotifier{
   final List<User> _listUser = [];
   final List<ShoppingList> _listShoppingList = [];
-  final List<ListItems> _listListItems= [];
+  final List<ItemsList> _listItemsList= [];
   String userName = '';
+  String shoppingListName = '';
 
   get getListAllUser => (_listUser);
 
   get getUsername => (userName);
-  
+    
   setUserName(String name) {
     userName = name;
+    notifyListeners();
+  }
+
+  setShoppingListName(String name) {
+    shoppingListName = name;
     notifyListeners();
   }
 
@@ -53,4 +60,14 @@ class Repository extends ChangeNotifier{
     }
     notifyListeners();
   } 
+
+  get getnameShoppingList => (shoppingListName);
+
+  saveItemList(ItemsList it) {
+    if(! _listItemsList.contains(it)) {
+      _listItemsList.add(it);
+    }
+
+    notifyListeners();
+  }
 }

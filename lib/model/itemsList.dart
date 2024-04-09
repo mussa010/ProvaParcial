@@ -1,10 +1,10 @@
-class ListItems {
+class ItemsList {
   String shoppingListName = '';
   String productName = '';
   int quantity = 0;
   bool bought = false;
 
-  ListItems({required this.productName, required this.quantity, required this.shoppingListName, required this.bought});
+  ItemsList({required this.productName, required this.quantity, required this.shoppingListName, required this.bought});
 
   String get getShoppingListname {
     return shoppingListName;
@@ -38,7 +38,7 @@ class ListItems {
     quantity = quantity;
   }
 
-  factory ListItems.fromJson(Map<String, dynamic> json) => ListItems(
+  factory ItemsList.fromJson(Map<String, dynamic> json) => ItemsList(
      shoppingListName : json['shoppingListName'],
      productName : json['productName'],
      quantity : json['quantity'],
