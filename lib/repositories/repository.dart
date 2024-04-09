@@ -12,20 +12,19 @@ class Repository extends ChangeNotifier{
   String userName = '';
   String shoppingListName = '';
 
+  // Pega toda a lista de usuário
   get getListAllUser => (_listUser);
 
+  //Pega o nome atual do usuário
   get getUsername => (userName);
     
+  // Salva nome do usuário atual 
   setUserName(String name) {
     userName = name;
     notifyListeners();
   }
 
-  setShoppingListName(String name) {
-    shoppingListName = name;
-    notifyListeners();
-  }
-
+  //Salvar lista de usuários pré-definido
   saveAll(List<User> user) {
     for (User u in user) { 
       if(! _listUser.contains(u)) {
@@ -35,6 +34,7 @@ class Repository extends ChangeNotifier{
     notifyListeners();
   }
 
+  // Salvar nome do usuário atual
   saveUser(User user) {
     if(! _listUser.contains(user)) {
       _listUser.add(user);
@@ -42,9 +42,11 @@ class Repository extends ChangeNotifier{
     notifyListeners();
   } 
 
-  get getlistAllShoppingList => (_listShoppingList);
+  // pega todas as listas de compra
+  get getListAllShoppingList => (_listShoppingList);
 
-  List<ShoppingList>getlistAllShoppingListUser() {
+  // Pegar todas as listas de compra de um usuário específico
+  List<ShoppingList>getListAllShoppingListUser() {
     List<ShoppingList> sh = [];
     for(ShoppingList s in _listShoppingList) {
       if(s.getCreatorName == userName) {
@@ -54,6 +56,13 @@ class Repository extends ChangeNotifier{
     return sh;
   }
 
+  // Salvar nome da lista de compra selecionada pelo usuário
+  setShoppingListName(String name) {
+    shoppingListName = name;
+    notifyListeners();
+  }
+
+  // Criar lista de um usuário específico  
   saveShoppingListUser(ShoppingList sh) {
     if(! _listShoppingList.contains(sh)) {
       _listShoppingList.add(sh);
@@ -61,8 +70,10 @@ class Repository extends ChangeNotifier{
     notifyListeners();
   } 
 
+  //Pegar nome da lista de compra atual
   get getnameShoppingList => (shoppingListName);
 
+  //Salvar item na lista de compras global 
   saveItemList(ItemsList it) {
     if(! _listItemsList.contains(it)) {
       _listItemsList.add(it);
@@ -70,4 +81,15 @@ class Repository extends ChangeNotifier{
 
     notifyListeners();
   }
+
+  //Pegar todos os itens de uma lista de compras específica
+  List<ItemsList> getallItemsListShoppingList(String nameShoppingList) {
+    List<ItemsList> it = [];
+    for(ItemsList item in _listItemsList) {
+      if(item.getShoppingListname == nameShoppingList) {
+        it.add(item);
+      }
+    }
+    return it;
+ } 
 }
