@@ -122,4 +122,3 @@ class _MenuShoppingListView extends State<MenuShoppingListView> {
     );
   }
 }
-
