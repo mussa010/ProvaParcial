@@ -94,11 +94,22 @@ class _MenuShoppingListView extends State<MenuShoppingListView> {
                 itemBuilder: (BuildContext context, int index) {
                     return Card(
                     color: Colors.blue,
-                    child: ListTile(
-                      leading: const Icon(Icons.list, color: Colors.white,),
-                      title: 
-                        Text(listShoppingList[index].getName,
-                        style: const TextStyle(color: Colors.white),),
+
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      child: ListTile(
+                        leading: const Icon(Icons.list, color: Colors.white,
+                          size: 40,
+                        ),
+                        trailing: const Icon(Icons.arrow_forward_ios,
+                        color: Colors.white),
+                        onLongPress: () {
+                        },
+                        title: 
+                          Text(listShoppingList[index].getName,
+                          style: const TextStyle(color: Colors.white),),
+                      ),
                     )
                   );
                   
