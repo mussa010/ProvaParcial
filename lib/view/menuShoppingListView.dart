@@ -45,8 +45,18 @@ class _MenuShoppingListView extends State<MenuShoppingListView> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          actions: [IconButton(
-            icon: const Icon(
+          actions: [
+            IconButton(
+              icon: const Icon(
+              Icons.add_shopping_cart,
+              color: Colors.white,
+              size: 40,
+
+            ),
+            onPressed: () => Navigator.pushNamed(context, 't11'),
+            ),
+            IconButton(
+              icon: const Icon(
               Icons.add_shopping_cart,
               color: Colors.white,
               size: 40,

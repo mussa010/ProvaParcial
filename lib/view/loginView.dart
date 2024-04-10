@@ -66,7 +66,7 @@ class _Login extends State<Login> {
           ),
           leading: IconButton(
             icon: const Icon(
-              Icons.account_circle_outlined,
+              Icons.help_outline_sharp,
               color: Colors.white,
               size: 40,
             ),

@@ -167,7 +167,23 @@ class _EditItemListState extends State<EditItemList> {
         content: Text(mensagem),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context, 'voltar'),
+            onPressed: () => Navigator.pop(context, 't8'),
+            child: const Text('voltar'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  dialogBoxDelet(context,) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Item apagado'),
+        content: const Text('Item apagado com sucesso'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, ''),
             child: const Text('voltar'),
           ),
         ],

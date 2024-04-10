@@ -80,7 +80,7 @@ class _SearchShoppingByItem extends State<SearchShoppingByItem> {
           ),
           Expanded(
             child: _filteredShoppingLists.isEmpty
-                ? Center(
+                ? const Center(
                     child: Text(
                       'Não há lista cadastrada',
                       style: TextStyle(

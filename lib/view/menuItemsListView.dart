@@ -91,7 +91,7 @@ class MenuItemListView extends StatelessWidget {
                         leading: const Icon(Icons.list, color: Colors.white,
                           size: 40,
                         ),
-                        onLongPress: () {
+                        onTap: () {
                           save.setSelectedItem(listItems[index]);
                           Navigator.pushNamed(context, 't10');
                         },
