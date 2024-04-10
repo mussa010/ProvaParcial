@@ -168,7 +168,7 @@ class Repository extends ChangeNotifier{
     for(ItemsList i in _listItemsList) {
       if(i.getProductName.toLowerCase() == itemName.toLowerCase()) {
         for(ShoppingList s in _listShoppingList) {
-          if(s.getName.toLowerCase() == i.getShoppingListname.toLowerCase()) {
+          if(s.getName.toLowerCase() == i.getShoppingListname.toLowerCase() && s.getCreatorName == userName) {
             sh.add(s);
           }
         }

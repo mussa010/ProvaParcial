@@ -167,7 +167,7 @@ class _CreateAccount extends State<CreateAccount> {
                   ),
                   onPressed: () {
                     if(formKey.currentState!.validate()) {
-                      // Algoritmo para criar conta e salvar no banco de dados
+                      // Algoritmo para criar conta e salvar na lista de usuários
                       if(txtPassword.text == txtConfirmPassword.text) {
                         User user = User(name: txtName.text,  email: txtEmail.text, password: txtPassword.text);
                         save.saveUser(user);

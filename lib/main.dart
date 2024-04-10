@@ -23,15 +23,12 @@ void main() {
     )
   );
 
-  // runApp(
-  //   ChangeNotifierProvider(create: (context) => Repository(),
-  //     child: DevicePreview(
-  //      enabled: true,
-  //       builder: (context) => const MainApp())),
-  //   );
-
-    runApp(
-    ChangeNotifierProvider(create: (context) => Repository(), child: const MainApp()) );
+  runApp(
+    ChangeNotifierProvider(create: (context) => Repository(),
+      child: DevicePreview(
+       enabled: true,
+        builder: (context) => const MainApp())),
+    );
 }
 
 class MainApp extends StatelessWidget {

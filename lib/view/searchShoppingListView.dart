@@ -62,7 +62,7 @@ class _SearchShoppingByItem extends State<SearchShoppingByItem> {
                 dialogBox(context, 'Aviso', 'Campo de pesquisa está vazio');
               } else {
                 setState(() {
-                  _filteredShoppingLists = save.returnShoppingListFromItemSearch(txtItemName.text);
+                  _filteredShoppingLists = save.returnShoppingListFromItemSearch(txtItemName.text,);
                 });
               }
             }
