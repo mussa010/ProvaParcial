@@ -26,7 +26,7 @@ class _CreateAccount extends State<CreateAccount> {
   var txtConfirmPassword = TextEditingController();
 
 
-  caixaDialogo(context, titulo, mensagem) {
+  dialogBox(context, titulo, mensagem) {
     return showDialog(
       context: context, 
       builder: (BuildContext context) => AlertDialog.adaptive(
@@ -177,12 +177,12 @@ class _CreateAccount extends State<CreateAccount> {
                           txtPassword.clear();
                           txtConfirmPassword.clear();
                         });
-                        caixaDialogo(context, 'Criação de usuário', 'Usuário criado com sucesso.');
+                        dialogBox(context, 'Criação de usuário', 'Usuário criado com sucesso.');
                       } else {
                         setState(() {
                           var titulo = "Erro";
                           var mensagem = 'Senha incorreta';
-                          caixaDialogo(context, titulo, mensagem);
+                          dialogBox(context, titulo, mensagem);
                         });
                       }
                     }

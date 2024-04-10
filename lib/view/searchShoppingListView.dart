@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prova_parcial/model/itemsList.dart';
 import 'package:prova_parcial/repositories/repository.dart';
 import 'package:provider/provider.dart';
 
@@ -12,20 +13,29 @@ class SearchShoppingByItem extends StatefulWidget {
 }
 
 class _SearchShoppingByItem extends State<SearchShoppingByItem> {
-  final TextEditingController _searchController = TextEditingController();
+  var txtItemName= TextEditingController();
   List<ShoppingList> _filteredShoppingLists = [];
-
-  @override
-  void initState() {
-    super.initState();
-    _filteredShoppingLists = [];
-  }
+  String nameItem = '';
 
   @override
   Widget build(BuildContext context) {
     var save = Provider.of<Repository>(context);
-    List<ShoppingList> listShoppingList =
-        Provider.of<Repository>(context).getListAllShoppingListUser();
+
+    dialogBox(context, titulo, mensagem) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(titulo),
+        content: Text(mensagem),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'voltar'),
+            child: const Text('voltar'),
+          ),
+        ],
+      ),
+    );
+  }
 
     return Scaffold(
       appBar: AppBar(
@@ -37,14 +47,26 @@ class _SearchShoppingByItem extends State<SearchShoppingByItem> {
             fontWeight: FontWeight.bold,
           ),
         ),
+        leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.pop(context),
+          ),
         actions: [
           IconButton(
             icon: const Icon(
-              Icons.add_shopping_cart,
+              Icons.search,
               color: Colors.white,
               size: 40,
             ),
-            onPressed: () => Navigator.pushNamed(context, 't7'),
+            onPressed: () {
+              if(txtItemName.text.isEmpty) {
+                dialogBox(context, 'Aviso', 'Campo de pesquisa está vazio');
+              } else {
+                setState(() {
+                  _filteredShoppingLists = save.returnShoppingListFromItemSearch(txtItemName.text);
+                });
+              }
+            }
           ),
         ],
         backgroundColor: Colors.blue,
@@ -53,36 +75,29 @@ class _SearchShoppingByItem extends State<SearchShoppingByItem> {
         children: [
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: TextField(
-              controller: _searchController,
-              decoration: InputDecoration(
-                hintText: 'Pesquisar...',
-                suffixIcon: IconButton(
-                  icon: Icon(Icons.clear),
-                  onPressed: () {
-                    _searchController.clear();
-                    setState(() {
-                      _filteredShoppingLists = [];
-                    });
-                  },
-                ),
-              ),
-              onChanged: (value) {
-                setState(() {
-                  _filteredShoppingLists = listShoppingList
-                      .where((list) => list.getName
-                          .toLowerCase()
-                          .contains(value.toLowerCase()))
-                      .toList();
-                });
-              },
-            ),
+              child: Column(children: [
+                TextField(
+                  controller: txtItemName,
+                  decoration: InputDecoration(
+                    hintText: 'Pesquisar...',
+                    suffixIcon: IconButton(
+                      icon: const Icon(Icons.clear),
+                      onPressed: () {
+                        setState(() {
+                          txtItemName.clear();
+                         _filteredShoppingLists.clear();
+                        });
+
+                      },
+                    ),
+                  ),
+                ),],)
           ),
           Expanded(
             child: _filteredShoppingLists.isEmpty
                 ? const Center(
                     child: Text(
-                      'Não há lista cadastrada',
+                      'Não há lista com o item pesquisado',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 20,
@@ -109,11 +124,6 @@ class _SearchShoppingByItem extends State<SearchShoppingByItem> {
                               save.setSelectedShoppingList(
                                   _filteredShoppingLists[index]);
                               Navigator.pushNamed(context, 't8');
-                            },
-                            onLongPress: () {
-                              save.setSelectedShoppingList(
-                                  _filteredShoppingLists[index]);
-                              Navigator.pushNamed(context, 't11');
                             },
                             title: Text(
                               _filteredShoppingLists[index].getName,

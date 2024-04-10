@@ -48,19 +48,17 @@ class _MenuShoppingListView extends State<MenuShoppingListView> {
           actions: [
             IconButton(
               icon: const Icon(
-              Icons.add_shopping_cart,
+              Icons.search,
               color: Colors.white,
               size: 40,
-
             ),
             onPressed: () => Navigator.pushNamed(context, 't11'),
             ),
             IconButton(
               icon: const Icon(
-              Icons.add_shopping_cart,
+              Icons.add_circle,
               color: Colors.white,
               size: 40,
-
             ),
             onPressed: () => Navigator.pushNamed(context, 't7'),
           ),],
@@ -87,12 +85,20 @@ class _MenuShoppingListView extends State<MenuShoppingListView> {
               fontWeight: FontWeight.bold,
             ),
           ),
-          actions: [IconButton(
-            icon: const Icon(
-              Icons.add_shopping_cart,
+          actions: [
+            IconButton(
+              icon: const Icon(
+              Icons.search,
               color: Colors.white,
               size: 40,
-
+            ),
+            onPressed: () => Navigator.pushNamed(context, 't11'),
+            ),
+            IconButton(
+              icon: const Icon(
+              Icons.add_circle,
+              color: Colors.white,
+              size: 40,
             ),
             onPressed: () => Navigator.pushNamed(context, 't7'),
           ),],

@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
-import 'package:prova_parcial/model/itemsList.dart';
-import 'package:prova_parcial/view/editShoppingListView.dart';
 
 import '../model/user.dart';
 import '../model/shoppingList.dart';
@@ -163,5 +161,19 @@ class Repository extends ChangeNotifier{
       }
     }
     notifyListeners();
+  }
+
+  List<ShoppingList> returnShoppingListFromItemSearch(String itemName) {
+    List<ShoppingList> sh = [];
+    for(ItemsList i in _listItemsList) {
+      if(i.getProductName.toLowerCase() == itemName.toLowerCase()) {
+        for(ShoppingList s in _listShoppingList) {
+          if(s.getName.toLowerCase() == i.getShoppingListname.toLowerCase()) {
+            sh.add(s);
+          }
+        }
+      }
+    }
+    return sh;
   }
 }
