@@ -70,8 +70,8 @@ class Repository extends ChangeNotifier{
   editShoppingList(ShoppingList sh) {
     for(ShoppingList s in _listShoppingList) {
       if(sh.getCreatorName == s.getCreatorName && sh.getName == s.getName) {
-        _listShoppingList.remove(s);
-        _listShoppingList.add(sh);
+        s.setCreatorName = sh.getCreatorName;
+        s.setName = sh.getName;
       }
     }
 
@@ -120,8 +120,10 @@ class Repository extends ChangeNotifier{
   editItem(ItemsList it) {
     for(ItemsList i in _listItemsList) {
       if(i.getProductName == it.getProductName && i.getShoppingListname == it.getShoppingListname) {
-        _listItemsList.remove(i);
-        _listItemsList.add(it);
+        i.setBought = it.getBought;
+        i.setProductName = it.getProductName;
+        i.setShoppingListName = it.getShoppingListname;
+        i.setProductQuantity = it.getProductQuantity;
       }
     }
 

@@ -47,8 +47,6 @@ class _EditItemList extends State<EditItemList> {
     final save = Provider.of<Repository>(context);
     bool bought = false;
 
-    // txtItemName.text = item.getProductName;
-    // txtQuantity.text = item.getProductQuantity.toString();
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
@@ -96,6 +94,7 @@ class _EditItemList extends State<EditItemList> {
               children: [
                 // Campo de nome do item
               TextFormField(
+                initialValue: item.getProductName,
                 keyboardType: TextInputType.text,
                       controller: txtItemName,
                       decoration: const InputDecoration(
@@ -114,6 +113,7 @@ class _EditItemList extends State<EditItemList> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.1),
               TextFormField(
+                initialValue: item.getProductQuantity.toString(),
                 keyboardType: TextInputType.number,
                       controller: txtQuantity,
                       decoration: const InputDecoration(
