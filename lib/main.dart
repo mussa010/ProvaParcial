@@ -1,16 +1,16 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:prova_parcial/repositories/repository.dart';
-import 'package:prova_parcial/view/createItemListView.dart';
-import 'package:prova_parcial/view/testListView.dart';
+import '../repositories/repository.dart';
 import 'package:provider/provider.dart';
 
+import 'view/createItemListView.dart';
+import 'view/testListView.dart';
 import 'view/loginView.dart';
 import 'view/createAccountView.dart';
 import 'view/aboutAppView.dart';
-import '../view/menuShoppingListView.dart';
-import '../view/createShoppingListView.dart';
+import 'view/menuShoppingListView.dart';
+import 'view/createShoppingListView.dart';
 import 'view/menuItemsListView.dart';
 import 'view/editItemListView.dart';
 import 'view/searchShoppingListView.dart';
