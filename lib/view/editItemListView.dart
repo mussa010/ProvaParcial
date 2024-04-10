@@ -47,8 +47,8 @@ class _EditItemList extends State<EditItemList> {
     final save = Provider.of<Repository>(context);
     bool bought = false;
 
-    txtItemName = TextEditingController(text: item.getProductName);
-    txtQuantity = TextEditingController(text: item.getProductQuantity.toString());
+    // txtItemName.text = item.getProductName;
+    // txtQuantity.text = item.getProductQuantity.toString();
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
@@ -74,6 +74,7 @@ class _EditItemList extends State<EditItemList> {
                 dialogBox(context, 'Erro', 'Campo vazio');
               } else {
                 setState(() {
+                  
                   ItemsList it = ItemsList(productName: txtItemName.text, shoppingListName: shoppingListName, quantity:int.parse(txtQuantity.text), bought: bought);
                   save.editItem(it);
                   txtItemName.clear();
@@ -97,9 +98,6 @@ class _EditItemList extends State<EditItemList> {
               TextFormField(
                 keyboardType: TextInputType.text,
                       controller: txtItemName,
-                      onChanged: (value) {
-                        txtItemName = TextEditingController(text: value);
-                      },
                       decoration: const InputDecoration(
                         labelText: 'Informe o nome do item',
                       ),
@@ -116,9 +114,6 @@ class _EditItemList extends State<EditItemList> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.1),
               TextFormField(
-                onChanged: (value) {
-                  txtQuantity = TextEditingController(text: value);
-                },
                 keyboardType: TextInputType.number,
                       controller: txtQuantity,
                       decoration: const InputDecoration(
@@ -171,9 +166,12 @@ class _EditItemList extends State<EditItemList> {
                         foregroundColor: Colors.white,
                       ),
                       onPressed: () {
-                        save.removeItem(item);
+                        setState(() {
+                          txtItemName.clear();
+                          txtQuantity.clear();
+                        });
                         dialogBox(context, 'Apagando item', 'Item apagado com sucesso');
-                        Navigator.pop(context);
+                        save.removeItem(item);
                       },
                       child: const Text('Remover item')
               )

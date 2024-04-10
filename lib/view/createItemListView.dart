@@ -44,7 +44,7 @@ class _CreatShoppingList extends State<CreatItemList> {
   @override
   Widget build(BuildContext context) {
     var bought = false;
-    String shoppingListName = Provider.of<Repository>(context).getSelectedShoppingList()!.getName;
+    String shoppingListName = Provider.of<Repository>(context).getSelectedShoppingList().getName;
     final save = Provider.of<Repository>(context);
     return Scaffold(
       appBar: AppBar(
