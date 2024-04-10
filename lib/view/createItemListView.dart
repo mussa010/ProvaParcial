@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:path/path.dart';
 import '../repositories/repository.dart';
 import 'package:provider/provider.dart';
 import '../model/itemsList.dart';
@@ -22,6 +23,7 @@ class _CreatShoppingList extends State<CreatItemList> {
   //controlador para campo de texto
   var txtItemName = TextEditingController();
   var txtQuantity = TextEditingController();
+
 
   dialogBox(context, titulo, mensagem) {
     return showDialog(
@@ -73,7 +75,7 @@ class _CreatShoppingList extends State<CreatItemList> {
                   txtItemName.clear();
                   txtQuantity.clear();
                 });
-                dialogBox(context, 'Lista de compras', 'Lista criada com sucesso');
+                dialogBox(context, 'Item da lista', 'Item criado com sucesso');
               }
             }
           ),],
@@ -105,11 +107,12 @@ class _CreatShoppingList extends State<CreatItemList> {
                       },
 
               ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.1),
               TextFormField(
-                keyboardType: TextInputType.text,
-                      controller: txtItemName,
+                keyboardType: TextInputType.number,
+                      controller: txtQuantity,
                       decoration: const InputDecoration(
-                        labelText: 'Informe o nome do item',
+                        labelText: 'Informe a quantidade do item',
                       ),
                           // Validar se campo está vazio
                       validator: (value) {

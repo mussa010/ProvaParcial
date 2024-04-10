@@ -10,7 +10,8 @@ import 'view/loginView.dart';
 import 'view/createAccountView.dart';
 import 'view/aboutAppView.dart';
 import '../view/menuShoppingListView.dart';
-import 'view/createShoppingListView.dart';
+import '../view/createShoppingListView.dart';
+import 'view/menuItemsListView.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -50,7 +51,8 @@ class MainApp extends StatelessWidget {
         't5' : (context) => const AboutApp(),
         't6' : (context) => const MenuShoppingListView(),
         't7' : (context) => const CreatShoppingList(),
-        't8' : (context) => const CreatItemList()
+        't8' : (context) => const MenuItemListView(),
+        't9' : (context) => const CreatItemList()
       }
     );
   }

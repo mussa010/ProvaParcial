@@ -21,8 +21,8 @@ class _MenuShoppingListView extends State<MenuShoppingListView> {
         content: Text(mensagem),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context, 't1'),
-            child: const Text('ok'),
+            onPressed: () => Navigator.pop(context, 'Voltar'),
+            child: const Text('Voltar'),
           ),
         ],
       ),
@@ -106,7 +106,7 @@ class _MenuShoppingListView extends State<MenuShoppingListView> {
                         trailing: const Icon(Icons.arrow_forward_ios,
                         color: Colors.white),
                         onTap: () {
-                          // saveShoppingListName.setShoppingListName();
+                          saveShoppingListName.setShoppingListName(listShoppingList[index].getName);
                           Navigator.pushNamed(context, 't8');
                         },
                         title: 

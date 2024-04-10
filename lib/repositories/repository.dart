@@ -91,5 +91,15 @@ class Repository extends ChangeNotifier{
       }
     }
     return it;
- } 
+  }
+
+  editItemBought(ItemsList it) {
+    for(ItemsList i in _listItemsList) {
+      if(i.getProductName == it.getProductName && i.getShoppingListname == it.getShoppingListname) {
+        i.setProductName = it.getProductName;
+        i.setProductQuantity = it.getProductQuantity;
+        i.setBought = i.getBought;
+      }
+    }
+  } 
 }
