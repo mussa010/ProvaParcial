@@ -31,7 +31,7 @@ class _MenuShoppingListView extends State<MenuShoppingListView> {
 
   @override
   Widget build(BuildContext context) {
-    var saveShoppingListName = Provider.of<Repository>(context);
+    var save = Provider.of<Repository>(context);
     List<ShoppingList> listShoppingList = Provider.of<Repository>(context).getListAllShoppingListUser();
     if(listShoppingList.isEmpty) {
       return Scaffold(
@@ -106,8 +106,12 @@ class _MenuShoppingListView extends State<MenuShoppingListView> {
                         trailing: const Icon(Icons.arrow_forward_ios,
                         color: Colors.white),
                         onTap: () {
-                          saveShoppingListName.setShoppingListName(listShoppingList[index].getName);
+                          save.setShoppingListName(listShoppingList[index].getName);
                           Navigator.pushNamed(context, 't8');
+                        },
+                        onLongPress: () {
+                          save.setSelectedShoppingList(listShoppingList[index]);
+                          Navigator.pushNamed(context, 't11');
                         },
                         title: 
                           Text(listShoppingList[index].getName,

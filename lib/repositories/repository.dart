@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prova_parcial/model/itemsList.dart';
+import 'package:prova_parcial/view/editShoppingListView.dart';
 
 import '../model/user.dart';
 import '../model/shoppingList.dart';
@@ -11,6 +12,10 @@ class Repository extends ChangeNotifier{
   final List<ItemsList> _listItemsList= [];
   String userName = '';
   String shoppingListName = '';
+  String itemName = '';
+
+  ShoppingList selectedShoppingList = ShoppingList(listName: '', cratorName: '');
+  ItemsList selectedItem = ItemsList(productName: '', quantity: 0, shoppingListName: '', bought: false);
 
   // Pega toda a lista de usuário
   get getListAllUser => (_listUser);
@@ -62,6 +67,16 @@ class Repository extends ChangeNotifier{
     notifyListeners();
   }
 
+  editShoppingList(ShoppingList sh) {
+    for(ShoppingList s in _listShoppingList) {
+      if(sh.getCreatorName == s.getCreatorName && sh.getName == s.getName) {
+        _listShoppingList.remove(s);
+        _listShoppingList.add(sh);
+      }
+    }
+
+  }
+
   // Criar lista de um usuário específico  
   saveShoppingListUser(ShoppingList sh) {
     if(! _listShoppingList.contains(sh)) {
@@ -70,8 +85,11 @@ class Repository extends ChangeNotifier{
     notifyListeners();
   } 
 
-  //Pegar nome da lista de compra atual
-  get getnameShoppingList => (shoppingListName);
+  //Guarda lista selecionada
+  setSelectedShoppingList(ShoppingList sh) {
+    selectedShoppingList = sh;
+    notifyListeners();
+  }
 
   //Salvar item na lista de compras global 
   saveItemList(ItemsList it) {
@@ -93,13 +111,56 @@ class Repository extends ChangeNotifier{
     return it;
   }
 
-  editItemBought(ItemsList it) {
+  // Retorna lista de compras selecionada
+  ShoppingList getSelectedShoppingList() {
+    return selectedShoppingList;
+  }
+
+  // Editar item da lista
+  editItem(ItemsList it) {
     for(ItemsList i in _listItemsList) {
       if(i.getProductName == it.getProductName && i.getShoppingListname == it.getShoppingListname) {
-        i.setProductName = it.getProductName;
-        i.setProductQuantity = it.getProductQuantity;
-        i.setBought = i.getBought;
+        _listItemsList.remove(i);
+        _listItemsList.add(it);
       }
     }
+
+    notifyListeners();
   } 
+
+  // Salvar nome item selecionado
+  setSelectedItemName(String name) {
+    itemName = name;
+    notifyListeners();
+  }
+
+  // Salva item selecionado
+  setSelectedItem (ItemsList it){
+    selectedItem = it;
+  }
+
+  // Retorna item selecionado
+  ItemsList getSelectedItem() {
+    return selectedItem;
+  }
+
+  // Remover item da lista
+  removeItem(ItemsList it) {
+    for(ItemsList i in _listItemsList) {
+      _listItemsList.remove(it);
+    }
+    notifyListeners();
+  }
+
+  //Remover itens especificos da lista
+  removeItensFromShoppingList(List<ItemsList> li) {
+    for(ItemsList i in _listItemsList) {
+      for(ItemsList item in li) {
+        if(item.getProductName == i.getProductName && item.getShoppingListname == i.getShoppingListname) {
+          _listItemsList.remove(item);
+        }
+      }
+    }
+    notifyListeners();
+  }
 }

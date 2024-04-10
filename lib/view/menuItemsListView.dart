@@ -32,7 +32,7 @@ class _MenuItemListView extends State<MenuItemListView> {
 
   @override
   Widget build(BuildContext context) {
-    String nameShoppingList = Provider.of<Repository>(context).getnameShoppingList;
+    String nameShoppingList = Provider.of<Repository>(context).getSelectedShoppingList().getName;
     var saveItemList = Provider.of<Repository>(context);
     List<ItemsList> listItemList = Provider.of<Repository>(context).getallItemsListShoppingList(nameShoppingList);
     if(listItemList.isEmpty) {
@@ -46,6 +46,10 @@ class _MenuItemListView extends State<MenuItemListView> {
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
+          ),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.pop(context),
           ),
           actions: [IconButton(
             icon: const Icon(
@@ -68,6 +72,10 @@ class _MenuItemListView extends State<MenuItemListView> {
         )
       );
     }
+    setState(() {
+      listItemList = Provider.of<Repository>(context).getallItemsListShoppingList(nameShoppingList);
+      print('tudo certo');
+    });
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -79,23 +87,28 @@ class _MenuItemListView extends State<MenuItemListView> {
               fontWeight: FontWeight.bold,
             ),
           ),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.pop(context),
+          ),
           actions: [IconButton(
             icon: const Icon(
-              Icons.add_shopping_cart,
+              Icons.add_circle_sharp,
               color: Colors.white,
               size: 40,
 
             ),
-            onPressed: () => Navigator.pushNamed(context, 't7'),
+            onPressed: () => Navigator.pushNamed(context, 't9'),
           ),],
           backgroundColor: Colors.blue,
         ),
+        
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: ListView.builder(
                 itemCount: listItemList.length,
                 itemBuilder: (BuildContext context, int index) {
-                  if(!listItemList[index].bought) {
+                  if(listItemList[index].bought == false) {
                     return Card(
                     color: Colors.blue,
 
@@ -103,14 +116,15 @@ class _MenuItemListView extends State<MenuItemListView> {
                       alignment: Alignment.center,
                       height: MediaQuery.of(context).size.height * 0.1,
                       child: ListTile(
-                        leading: const Icon(Icons.list, color: Colors.white,
+                        leading: const Icon(Icons.shopping_cart_outlined, color: Colors.white,
                           size: 40,
                         ),
                         
                         trailing: const Icon(Icons.check_circle_outline,
                         color: Colors.white),
                         onLongPress: () {
-
+                          saveItemList.setSelectedItem(listItemList[index]);
+                          Navigator.pushNamed(context, 't10').then((value) => {listItemList});
                         },
                         title: 
                           Text(listItemList[index].getProductName,
@@ -122,22 +136,22 @@ class _MenuItemListView extends State<MenuItemListView> {
                   );
                   } else {
                     return Card(
+                      
                     color: Colors.blue,
 
                     child: Container(
                       alignment: Alignment.center,
                       height: MediaQuery.of(context).size.height * 0.1,
                       child: ListTile(
-                        leading: const Icon(Icons.list, color: Colors.white,
+                        leading: const Icon(Icons.shopping_cart_outlined, color: Colors.white,
                           size: 40,
                         ),
                         
                         trailing: const Icon(Icons.check_circle_rounded,
                         color: Colors.white),
-                        onTap: () {
-                          ItemsList it = listItemList[index];
-                          // saveItemList;
-                          // Navigator.pushNamed(context, 't9');
+                        onLongPress: () {
+                          saveItemList.setSelectedItem(listItemList[index]);
+                          Navigator.pushNamed(context, 't10');
                         },
                         title: 
                           Text(listItemList[index].getProductName,

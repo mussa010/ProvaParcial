@@ -12,6 +12,8 @@ import 'view/aboutAppView.dart';
 import '../view/menuShoppingListView.dart';
 import '../view/createShoppingListView.dart';
 import 'view/menuItemsListView.dart';
+import 'view/editItemListView.dart';
+import 'view//editShoppingListView.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -52,7 +54,9 @@ class MainApp extends StatelessWidget {
         't6' : (context) => const MenuShoppingListView(),
         't7' : (context) => const CreatShoppingList(),
         't8' : (context) => const MenuItemListView(),
-        't9' : (context) => const CreatItemList()
+        't9' : (context) => const CreatItemList(),
+        't10' : (context) => const EditItemList(),
+        't11' : (context) => const EditShoppingList()
       }
     );
   }

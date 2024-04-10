@@ -43,7 +43,8 @@ class _CreatShoppingList extends State<CreatItemList> {
   
   @override
   Widget build(BuildContext context) {
-    String shoppingListName = Provider.of<Repository>(context).getnameShoppingList;
+    var bought = false;
+    String shoppingListName = Provider.of<Repository>(context).getSelectedShoppingList()!.getName;
     final save = Provider.of<Repository>(context);
     return Scaffold(
       appBar: AppBar(
@@ -69,7 +70,7 @@ class _CreatShoppingList extends State<CreatItemList> {
               if(txtItemName.text.isEmpty || txtQuantity.text.isEmpty) {
                 dialogBox(context, 'Erro', 'Campo vazio');
               } else {
-                ItemsList it = ItemsList(productName: txtItemName.text, shoppingListName: shoppingListName, quantity:int.parse(txtQuantity.text), bought: false);
+                ItemsList it = ItemsList(productName: txtItemName.text, shoppingListName: shoppingListName, quantity:int.parse(txtQuantity.text), bought: bought);
                 save.saveItemList(it);
                 setState(() {
                   txtItemName.clear();
@@ -81,7 +82,8 @@ class _CreatShoppingList extends State<CreatItemList> {
           ),],
           backgroundColor: Colors.blue,
         ),
-        body:  Padding(
+        body:  SingleChildScrollView(
+          child: Padding(
           padding: const EdgeInsets.all(20),
           child: Form(
             key: formKey,
@@ -124,10 +126,34 @@ class _CreatShoppingList extends State<CreatItemList> {
                         return null;
                       },
 
-              )
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+              OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        minimumSize: const Size(200, 60),
+                        backgroundColor: Colors.blue,
+                        foregroundColor: Colors.white,
+                      ),
+                      onPressed: () {
+                        bought = true;
+                      },
+                      child: const Text('Comprado'),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+              OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        minimumSize: const Size(200, 60),
+                        backgroundColor: Colors.orange,
+                        foregroundColor: Colors.white,
+                      ),
+                      onPressed: () {
+                        bought = false;
+                      },
+                      child: const Text('Não comprado')
+              ),
             ],),
           ),
-        )
+        ))
     );
   }
 }
