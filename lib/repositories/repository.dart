@@ -1,6 +1,3 @@
-import 'dart:async';
-import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
 
 import '../model/user.dart';
@@ -140,6 +137,7 @@ class Repository extends ChangeNotifier{
     return selectedItem;
   }
 
+  // Retorna lista de itens de um ShoppingList
   List<ItemsList>getItemsFromShoppingList(String sh) {
     List<ItemsList> it = [];
     for(ItemsList i in _listItemsList) {
@@ -162,6 +160,8 @@ class Repository extends ChangeNotifier{
     }
     notifyListeners();
   }
+
+  // Retorna lista de ShoppingList que possua o item que o usuário quer pesquisar
 
   List<ShoppingList> returnShoppingListFromItemSearch(String itemName) {
     List<ShoppingList> sh = [];

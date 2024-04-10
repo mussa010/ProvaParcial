@@ -6,12 +6,7 @@ class AboutApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const  String about = '''
-      Nome do Criador: 
-      Matheus Teixeira Mussalam\n
-      Código: 
-      836445\n
-      Sobre: 
-      App desenvolvido para criação de lista de compras com criação, edição e remoção de itens
+      Nome do Criador:\nMatheus Teixeira Mussalam\n\nCódigo:\n836445\n\nTema escolhido:\nLista de compras\n\nObjetivo:\nTem como objetivo possibilitar que o usuário crie listas, podendo criar, editar e remover itens.
     ''';
 
     return Scaffold(
@@ -49,7 +44,7 @@ class AboutApp extends StatelessWidget {
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(50)),
-              child: const Text(about),
+              child: const Text(about,textAlign: TextAlign.center),
             ),
           ),
         ],))

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:prova_parcial/model/itemsList.dart';
 import 'package:prova_parcial/repositories/repository.dart';
 import 'package:provider/provider.dart';
 
