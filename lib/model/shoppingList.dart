@@ -1,8 +1,8 @@
 class ShoppingList {
   String listName = '';
-  String cratorName = '';
+  String creatorName = '';
 
-  ShoppingList({ required this.listName, required this.cratorName});
+  ShoppingList({ required this.listName, required this.creatorName});
 
   String get getName {
     return listName;
@@ -13,20 +13,20 @@ class ShoppingList {
   }
 
   String get getCreatorName {
-    return cratorName;
+    return creatorName;
   }
 
   set setCreatorName(String cratorName) {
-    this.cratorName = cratorName;
+    this.creatorName = cratorName;
   }
 
   factory ShoppingList.fromJson(Map<String, dynamic> json) => ShoppingList(
     listName : json['listName'],
-    cratorName : json['cratorName']
+    creatorName : json['cratorName']
   );
 
   Map<String, dynamic> toJson() => {
     'listName' : listName,
-    'cratorName' : cratorName
+    'cratorName' : creatorName
   };
 }

@@ -34,8 +34,16 @@ class ItemsList {
     return bought;
   }
 
-  set setBought(bool bought) {
-    quantity = quantity;
+  set setBought(bool b) {
+    bought = b;
+  }
+
+  get getProductQuantityString {
+    return quantity.toString();
+  }
+
+  set setProductQuantityToInt(String q) {
+    quantity = int.parse(q);
   }
 
   factory ItemsList.fromJson(Map<String, dynamic> json) => ItemsList(

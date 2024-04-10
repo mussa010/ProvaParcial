@@ -23,6 +23,7 @@ class _CreatShoppingList extends State<CreatItemList> {
   //controlador para campo de texto
   var txtItemName = TextEditingController();
   var txtQuantity = TextEditingController();
+  bool bought = false;
 
 
   dialogBox(context, titulo, mensagem) {
@@ -43,7 +44,6 @@ class _CreatShoppingList extends State<CreatItemList> {
   
   @override
   Widget build(BuildContext context) {
-    var bought = false;
     String shoppingListName = Provider.of<Repository>(context).getSelectedShoppingList().getName;
     final save = Provider.of<Repository>(context);
     return Scaffold(
@@ -135,7 +135,9 @@ class _CreatShoppingList extends State<CreatItemList> {
                         foregroundColor: Colors.white,
                       ),
                       onPressed: () {
-                        bought = true;
+                        setState(() {
+                          bought = true;
+                        });
                       },
                       child: const Text('Comprado'),
               ),
@@ -147,7 +149,9 @@ class _CreatShoppingList extends State<CreatItemList> {
                         foregroundColor: Colors.white,
                       ),
                       onPressed: () {
-                        bought = false;
+                        setState(() {
+                          bought = false;
+                        });
                       },
                       child: const Text('Não comprado')
               ),

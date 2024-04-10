@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:js_interop';
+
 import 'package:flutter/material.dart';
 import 'package:prova_parcial/model/itemsList.dart';
 import 'package:prova_parcial/view/editShoppingListView.dart';
@@ -14,7 +17,7 @@ class Repository extends ChangeNotifier{
   String shoppingListName = '';
   String itemName = '';
 
-  ShoppingList selectedShoppingList = ShoppingList(listName: '', cratorName: '');
+  ShoppingList selectedShoppingList = ShoppingList(listName: '', creatorName: '');
   ItemsList selectedItem = ItemsList(productName: '', quantity: 0, shoppingListName: '', bought: false);
 
   // Pega toda a lista de usuário
@@ -74,7 +77,7 @@ class Repository extends ChangeNotifier{
         s.setName = sh.getName;
       }
     }
-
+    notifyListeners();
   }
 
   // Criar lista de um usuário específico  
@@ -91,24 +94,25 @@ class Repository extends ChangeNotifier{
     notifyListeners();
   }
 
-  //Salvar item na lista de compras global 
+  // Salvar item na lista de compras global 
   saveItemList(ItemsList it) {
-    if(! _listItemsList.contains(it)) {
+    if (!_listItemsList.contains(it)) {
       _listItemsList.add(it);
     }
-
     notifyListeners();
   }
 
-  //Pegar todos os itens de uma lista de compras específica
-  List<ItemsList> getallItemsListShoppingList(String nameShoppingList) {
-    List<ItemsList> it = [];
-    for(ItemsList item in _listItemsList) {
-      if(item.getShoppingListname == nameShoppingList) {
-        it.add(item);
+  // Editar item da lista
+  editItem(ItemsList it) {
+    for (ItemsList i in _listItemsList) {
+      if (i.getProductName == selectedItem.getProductName && i.getShoppingListname == selectedItem.getShoppingListname) {
+        _listItemsList.remove(i);
+        notifyListeners();
+        _listItemsList.add(it);
+        notifyListeners();
       }
     }
-    return it;
+    notifyListeners();
   }
 
   // Retorna lista de compras selecionada
@@ -116,19 +120,11 @@ class Repository extends ChangeNotifier{
     return selectedShoppingList;
   }
 
-  // Editar item da lista
-  editItem(ItemsList it) {
-    for(ItemsList i in _listItemsList) {
-      if(i.getProductName == it.getProductName && i.getShoppingListname == it.getShoppingListname) {
-        i.setBought = it.getBought;
-        i.setProductName = it.getProductName;
-        i.setShoppingListName = it.getShoppingListname;
-        i.setProductQuantity = it.getProductQuantity;
-      }
-    }
-
+  // Remover item da lista
+  removeItem(ItemsList it) {
+    _listItemsList.remove(it);
     notifyListeners();
-  } 
+  }
 
   // Salvar nome item selecionado
   setSelectedItemName(String name) {
@@ -146,12 +142,15 @@ class Repository extends ChangeNotifier{
     return selectedItem;
   }
 
-  // Remover item da lista
-  removeItem(ItemsList it) {
+  List<ItemsList>getItemsFromShoppingList(String sh) {
+    List<ItemsList> it = [];
     for(ItemsList i in _listItemsList) {
-      _listItemsList.remove(it);
+      if(i.getShoppingListname == sh) {
+        it.add(i);
+      }
     }
-    notifyListeners();
+    return it;
+
   }
 
   //Remover itens especificos da lista

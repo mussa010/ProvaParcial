@@ -106,7 +106,7 @@ class _MenuShoppingListView extends State<MenuShoppingListView> {
                         trailing: const Icon(Icons.arrow_forward_ios,
                         color: Colors.white),
                         onTap: () {
-                          save.setShoppingListName(listShoppingList[index].getName);
+                          save.setSelectedShoppingList(listShoppingList[index]);
                           Navigator.pushNamed(context, 't8');
                         },
                         onLongPress: () {

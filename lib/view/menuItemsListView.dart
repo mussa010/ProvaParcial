@@ -3,53 +3,31 @@ import 'package:prova_parcial/model/itemsList.dart';
 import 'package:prova_parcial/repositories/repository.dart';
 import 'package:provider/provider.dart';
 
-import '../model/itemsList.dart';
-
-class MenuItemListView extends StatefulWidget {
+class MenuItemListView extends StatelessWidget {
   const MenuItemListView({super.key});
 
   @override
-  State<MenuItemListView> createState() => _MenuItemListView();
-}
-
-class _MenuItemListView extends State<MenuItemListView> {
-
-  dialogBox(context, titulo, mensagem) {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: Text(titulo),
-        content: Text(mensagem),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context, 'voltar'),
-            child: const Text('voltar'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
-    String nameShoppingList = Provider.of<Repository>(context).getSelectedShoppingList().getName;
-    var saveItemList = Provider.of<Repository>(context);
-    List<ItemsList> listItemList = Provider.of<Repository>(context).getallItemsListShoppingList(nameShoppingList);
-    if(listItemList.isEmpty) {
+    final save = Provider.of<Repository>(context);
+    final nameShoppingList = save.getSelectedShoppingList().getName;
+    List<ItemsList> listItems = Provider.of<Repository>(context).getItemsFromShoppingList(nameShoppingList);
+
+    String status = '';
+    if(listItems.isEmpty) {
       return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
           centerTitle: true,
-          title: Text(
-            'Itens da lista $nameShoppingList',
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.pop(context),
+          ),
+          title: const Text(
+            'Listas de itens',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           actions: [IconButton(
             icon: const Icon(
@@ -64,7 +42,7 @@ class _MenuItemListView extends State<MenuItemListView> {
         ),
         body: Container(
           alignment: Alignment.center,
-          child: const Text('Não há item cadastrado', style: TextStyle(
+          child: const Text('Não há itens cadastrado', style: TextStyle(
             color: Colors.black,
             fontSize: 20
           )
@@ -72,24 +50,16 @@ class _MenuItemListView extends State<MenuItemListView> {
         )
       );
     }
-    setState(() {
-      listItemList = Provider.of<Repository>(context).getallItemsListShoppingList(nameShoppingList);
-      print('tudo certo');
-    });
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
           centerTitle: true,
-          title: Text(
-            'Itens da lista $nameShoppingList',
-            style: const TextStyle(
+          title: const Text(
+            'Listas de itens',
+            style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
-          ),
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Colors.white),
-            onPressed: () => Navigator.pop(context),
           ),
           actions: [IconButton(
             icon: const Icon(
@@ -102,66 +72,35 @@ class _MenuItemListView extends State<MenuItemListView> {
           ),],
           backgroundColor: Colors.blue,
         ),
-        
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: ListView.builder(
-                itemCount: listItemList.length,
+                itemCount: listItems.length,
                 itemBuilder: (BuildContext context, int index) {
-                  if(listItemList[index].bought == false) {
+                   if(listItems[index].getBought == true) {
+                      status = 'Comprado';
+                    } else {
+                      status = 'Não comprado';
+                    }
                     return Card(
                     color: Colors.blue,
-
                     child: Container(
                       alignment: Alignment.center,
-                      height: MediaQuery.of(context).size.height * 0.1,
+                      height: MediaQuery.of(context).size.height * 0.15,
                       child: ListTile(
-                        leading: const Icon(Icons.shopping_cart_outlined, color: Colors.white,
+                        leading: const Icon(Icons.list, color: Colors.white,
                           size: 40,
                         ),
-                        
-                        trailing: const Icon(Icons.check_circle_outline,
-                        color: Colors.white),
                         onLongPress: () {
-                          saveItemList.setSelectedItem(listItemList[index]);
-                          Navigator.pushNamed(context, 't10').then((value) => {listItemList});
-                        },
-                        title: 
-                          Text(listItemList[index].getProductName,
-                          style: const TextStyle(color: Colors.white),),
-                        subtitle: Text('Quantidade: ${listItemList[index].getProductQuantity}', 
-                          style: const TextStyle(color: Colors.white)),
-                      ),
-                    )
-                  );
-                  } else {
-                    return Card(
-                      
-                    color: Colors.blue,
-
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      child: ListTile(
-                        leading: const Icon(Icons.shopping_cart_outlined, color: Colors.white,
-                          size: 40,
-                        ),
-                        
-                        trailing: const Icon(Icons.check_circle_rounded,
-                        color: Colors.white),
-                        onLongPress: () {
-                          saveItemList.setSelectedItem(listItemList[index]);
+                          save.setSelectedItem(listItems[index]);
                           Navigator.pushNamed(context, 't10');
                         },
                         title: 
-                          Text(listItemList[index].getProductName,
+                          Text('Nome: ${listItems[index].getProductName}\nQuantidade: ${listItems[index].getProductQuantity}\nStatus: $status',
                           style: const TextStyle(color: Colors.white),),
-                        subtitle: Text('Quantidade: ${listItemList[index].getProductQuantity}', 
-                          style: const TextStyle(color: Colors.white)),
                       ),
                     )
                   );
-                  }
                 },
               )
       )

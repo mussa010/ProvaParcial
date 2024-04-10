@@ -64,7 +64,7 @@ class _CreatShoppingList extends State<CreatShoppingList> {
               if(txtName.text.isEmpty) {
                 dialogBox(context, 'Erro', 'Campo vazio');
               } else {
-                ShoppingList sh = ShoppingList(listName: txtName.text, cratorName: userName);
+                ShoppingList sh = ShoppingList(listName: txtName.text, creatorName: userName);
                 save.saveShoppingListUser(sh);
                 setState(() {
                   txtName.clear();
