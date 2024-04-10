@@ -33,6 +33,7 @@ class _MenuShoppingListView extends State<MenuShoppingListView> {
   Widget build(BuildContext context) {
     var save = Provider.of<Repository>(context);
     List<ShoppingList> listShoppingList = Provider.of<Repository>(context).getListAllShoppingListUser();
+
     if(listShoppingList.isEmpty) {
       return Scaffold(
       appBar: AppBar(
