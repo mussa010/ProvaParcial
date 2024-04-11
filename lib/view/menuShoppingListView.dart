@@ -128,7 +128,7 @@ class _MenuShoppingListView extends State<MenuShoppingListView> {
                         },
                         onLongPress: () {
                           save.setSelectedShoppingList(listShoppingList[index]);
-                          Navigator.pushNamed(context, 't11');
+                          Navigator.pushNamed(context, 't12');
                         },
                         title: 
                           Text(listShoppingList[index].getName,

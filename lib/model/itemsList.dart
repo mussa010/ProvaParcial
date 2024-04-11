@@ -10,8 +10,8 @@ class ItemsList {
     return shoppingListName;
   }
 
-  set setShoppingListName(String shoppingListName) {
-    this.shoppingListName = shoppingListName;
+  set setShoppingListName(String name) {
+    shoppingListName = name;
   }
 
   String get getProductName {
@@ -45,18 +45,4 @@ class ItemsList {
   set setProductQuantityToInt(String q) {
     quantity = int.parse(q);
   }
-
-  factory ItemsList.fromJson(Map<String, dynamic> json) => ItemsList(
-     shoppingListName : json['shoppingListName'],
-     productName : json['productName'],
-     quantity : json['quantity'],
-     bought : json['bought']
-  );
-
-  Map<String, dynamic> toJson() => {
-    'shoppingListName' : shoppingListName,
-    'productName' : productName,
-    'quantity' : quantity,
-    'bought' : bought
-  };
 }

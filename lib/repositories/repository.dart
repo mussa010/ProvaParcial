@@ -65,15 +65,22 @@ class Repository extends ChangeNotifier{
     notifyListeners();
   }
 
+  // Alterações do nome da lista e atualização do nome da lista guardado na classe ItemList
   editShoppingList(ShoppingList sh) {
-    for(ShoppingList s in _listShoppingList) {
-      if(sh.getCreatorName == s.getCreatorName && sh.getName == s.getName) {
-        s.setCreatorName = sh.getCreatorName;
-        s.setName = sh.getName;
-      }
+  for (int i = 0; i < _listItemsList.length; i++) {
+    if (_listItemsList[i].getShoppingListname == getSelectedShoppingList().getName) {
+      _listItemsList[i].setShoppingListName = sh.getName;
     }
-    notifyListeners();
   }
+
+  for (int i = 0; i < _listShoppingList.length; i++) {
+    if (sh.getCreatorName == _listShoppingList[i].getCreatorName && sh.getName == _listShoppingList[i].getName) {
+      _listShoppingList[i].setCreatorName = sh.getCreatorName;
+      _listShoppingList[i].setName = sh.getName;
+    }
+  }
+  notifyListeners();
+}
 
   // Criar lista de um usuário específico  
   saveShoppingListUser(ShoppingList sh) {
@@ -89,6 +96,16 @@ class Repository extends ChangeNotifier{
     notifyListeners();
   }
 
+  removeShoppingList(ShoppingList sh) {
+    for(ItemsList i in _listItemsList) {
+      if(i.getShoppingListname == sh.getName) {
+           _listItemsList.remove(i);
+      }
+    }
+    _listShoppingList.remove(sh);
+    notifyListeners();
+  }
+
   // Salvar item na lista de compras global 
   saveItemList(ItemsList it) {
     if (!_listItemsList.contains(it)) {
@@ -99,12 +116,11 @@ class Repository extends ChangeNotifier{
 
   // Editar item da lista
   editItem(ItemsList it) {
-    for (ItemsList i in _listItemsList) {
-      if (i.getProductName == selectedItem.getProductName && i.getShoppingListname == selectedItem.getShoppingListname) {
-        _listItemsList.remove(i);
-        notifyListeners();
-        _listItemsList.add(it);
-        notifyListeners();
+    for (int i = 0; i < _listItemsList.length; i++) {
+      if (_listItemsList[i].getProductName == selectedItem.getProductName && _listItemsList[i].getShoppingListname == selectedItem.getShoppingListname) {
+        _listItemsList[i].setBought = it.getBought;
+        _listItemsList[i].setProductName = it.getProductName;
+        _listItemsList[i].setProductQuantity = it.getProductQuantity;
       }
     }
     notifyListeners();
