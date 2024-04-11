@@ -66,16 +66,15 @@ class Repository extends ChangeNotifier{
   }
 
   // Alterações do nome da lista e atualização do nome da lista guardado na classe ItemList
-  editShoppingList(ShoppingList sh) {
+  editShoppingList(ShoppingList sh, String name) {
   for (int i = 0; i < _listItemsList.length; i++) {
-    if (_listItemsList[i].getShoppingListname == getSelectedShoppingList().getName) {
+    if (_listItemsList[i].getShoppingListname == name) {
       _listItemsList[i].setShoppingListName = sh.getName;
     }
   }
 
   for (int i = 0; i < _listShoppingList.length; i++) {
-    if (sh.getCreatorName == _listShoppingList[i].getCreatorName && sh.getName == _listShoppingList[i].getName) {
-      _listShoppingList[i].setCreatorName = sh.getCreatorName;
+    if (name == _listShoppingList[i].getName) {
       _listShoppingList[i].setName = sh.getName;
     }
   }
@@ -178,7 +177,6 @@ class Repository extends ChangeNotifier{
   }
 
   // Retorna lista de ShoppingList que possua o item que o usuário quer pesquisar
-
   List<ShoppingList> returnShoppingListFromItemSearch(String itemName) {
     List<ShoppingList> sh = [];
     for(ItemsList i in _listItemsList) {

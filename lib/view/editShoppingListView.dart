@@ -41,6 +41,7 @@ class _EditShoppingList extends State<EditShoppingList> {
     String userName = Provider.of<Repository>(context).getUsername;
     final save = Provider.of<Repository>(context);
     ShoppingList sh = save.getSelectedShoppingList();
+    String name = sh.getName;
 
     txtName.text = sh.getName;
     return Scaffold(
@@ -67,8 +68,8 @@ class _EditShoppingList extends State<EditShoppingList> {
               if(txtName.text.isEmpty) {
                 dialogBox(context, 'Erro', 'Campo vazio');
               } else {
-                ShoppingList s = ShoppingList(listName: sh.getName, creatorName: userName);
-                save.editShoppingList(s);
+                ShoppingList s = ShoppingList(listName: txtName.text, creatorName: userName);
+                save.editShoppingList(s, name);
                 dialogBox(context, 'Lista de compras', 'Lista atualizada com sucesso');
               }
             }
